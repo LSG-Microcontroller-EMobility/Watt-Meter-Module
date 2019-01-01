@@ -150,6 +150,9 @@
       (Path "Design Resources"
          "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
          "SCHEMATIC1")
+      (Path "Design Resources"
+         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
+         "SCHEMATIC2")
       (Path "Design Resources" "Library")
       (Path "Outputs")
       (Path "PSpice Resources")
@@ -167,12 +170,12 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 2 3 -1 -1 -8 -31 52 1688 52 504")
-        (Scroll "119 310")
+        (Placement "44 2 3 -1 -1 -8 -31 26 1662 26 478")
+        (Scroll "78 298")
         (Zoom "200")
         (Occurrence "/"))
       (Path
-         "C:\REPO\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
+         "C:\REPO\LSG-MICROCONTROLLER-EMOBILITY\WATT-METER-MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
       (Schematic "SCHEMATIC1")
       (Page "Voltage calcultor")))
   (MPSSessionName "luigi"))

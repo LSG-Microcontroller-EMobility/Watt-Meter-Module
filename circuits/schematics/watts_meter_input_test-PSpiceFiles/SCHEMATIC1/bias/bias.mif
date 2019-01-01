@@ -1,0 +1,4 @@
+ lib=c:\repo\lsg-microcontroller-emobility\watt-meter-module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=1656, size=84
+ lib=c:\repo\lsg-microcontroller-emobility\watt-meter-module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=412, size=225
+ lib=C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice\Library\anl_misc.lib, offset=21482, size=1021
+ lib=C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice\Library\breakout.lib, offset=9106, size=133

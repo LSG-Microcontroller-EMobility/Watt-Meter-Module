@@ -19,6 +19,9 @@
     <Filter Include="circuit">
       <UniqueIdentifier>{23345e5a-aed1-4e09-8ae4-779fe413f86f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External Library">
+      <UniqueIdentifier>{A0A6B82F-351E-4F13-9A5A-7696C7EA50C4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\arduino folders read me.txt">
@@ -33,10 +36,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Watt-Meter-Module.ino" />
+    <ClCompile Include="src\external_library\SoftwareSerialTxOnly.cpp">
+      <Filter>External Library</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Watt-Meter-Module.vsarduino.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external_library\SoftwareSerialTxOnly.h">
+      <Filter>External Library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

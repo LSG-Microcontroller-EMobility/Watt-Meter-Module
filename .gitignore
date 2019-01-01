@@ -26,6 +26,9 @@
 *.a
 *.lib
 
+# PSpice model libraries are project source files, not linker artifacts.
+!circuits/**/*.lib
+
 # Executables
 *.exe
 *.out
