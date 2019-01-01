@@ -32,10 +32,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="watts_calculator_module.ino" />
+    <ClCompile Include="Watt-Meter-Module.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.watts_calculator_module.vsarduino.h">
+    <ClInclude Include="__vm\.Watt-Meter-Module.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

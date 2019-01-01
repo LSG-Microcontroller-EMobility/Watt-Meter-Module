@@ -26,7 +26,7 @@
                     ("pspice_param"	"VAMPL")
                 )
                 ("BiasValue Power"
-                    ("value"	"-5.348W")
+                    ("value"	"-5.352W")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("PHASE"
@@ -57,7 +57,7 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"4.664W")
+                    ("value"	"4.668W")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("AREA"
@@ -80,7 +80,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"319.6mW")
+                    ("value"	"320.0mW")
                     ("pspice_param"	"BiasValue Power")
                 )
             )
@@ -212,7 +212,7 @@
                     ("pspice_param"	"Ropen")
                 )
                 ("BiasValue Power"
-                    ("value"	"58.38uW")
+                    ("value"	"58.45uW")
                     ("pspice_param"	"BiasValue Power")
                 )
             )
@@ -296,7 +296,7 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"364.3mW")
+                    ("value"	"352.4mW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("AREA"
@@ -529,7 +529,7 @@
                     ("pspice_param"	"FREQ")
                 )
                 ("BiasValue Power"
-                    ("value"	"-234.7uW")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("PHASE"
@@ -564,7 +564,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"179.8nW")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("TC2"
@@ -623,7 +623,7 @@
                     ("pspice_param"	"Ropen")
                 )
                 ("BiasValue Power"
-                    ("value"	"3.826pW")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
             )
@@ -712,7 +712,7 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"8.117nW")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("AREA"
@@ -743,7 +743,7 @@
                     ("pspice_param"	"Ropen")
                 )
                 ("BiasValue Power"
-                    ("value"	"172.3e-21W")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
             )
@@ -754,7 +754,7 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"196.3uW")
+                    ("value"	"")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("AREA"

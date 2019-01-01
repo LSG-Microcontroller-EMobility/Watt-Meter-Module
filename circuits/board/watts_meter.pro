@@ -1,6 +1,6 @@
 EAGLE AutoRouter Statistics:
 
-Job           : C:/Repos/LSG-Microcontroller-EMobility/watts_calculator_module/circuits/board/watts_meter.brd
+Job           : C:/Repos/LSG-Microcontroller-EMobility/Watt-Meter-Module/circuits/board/watts_meter.brd
 
 Start at      : 13:56:35 (22/11/2024)
 End at        : 13:56:39 (22/11/2024)

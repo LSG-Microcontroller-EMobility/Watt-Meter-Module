@@ -1,7 +1,7 @@
 
-**** 01/08/25 00:52:55 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+**** 09/16/26 11:31:28 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
+ ** Profile: "SCHEMATIC1-bias"  [ C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input
 
 
  ****     CIRCUIT DESCRIPTION
@@ -19,7 +19,9 @@
 * Profile Libraries :
 * Local Libraries :
 .LIB "../../../watts_meter_input_test-PSpiceFiles/WATTS_METER_INPUT_TEST.lib" 
-* From [PSPICE NETLIST] section of C:\Users\luigi.santagada\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+* From [PSPICE NETLIST] section of C:\Users\luigi\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+------------------------------------------------------------------------------$
+ERROR(ORPSIM-16276): Can't find library
 .lib "nomd.lib" 
 
 *Analysis directives: 
@@ -61,16 +63,13 @@ V_V6         N42843 0
 R_R17         N43303 N42899  470 TC=0,0 
 X_U5         N42843 N42873 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
-D_zener         9V1 N42899 N42873 1N4739A 
 C_C2         0 N43303  0.1uF  TC=0,0 
-X_R18         N43303 N43541 0 POT PARAMS: SET=0 VALUE=2.2k
+X_R18         N43303 N43541 0 POT PARAMS: SET=1 VALUE=100k
 D_D3-5V2         0 N434261 D1N4733 
 X_U6         N434261 N43541 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
+D_D5         N42899 N42873 1N4740A 
 
 **** RESUMING bias.cir ****
 .END
-
-
-ERROR(ORPSIM-15113): Model N42873 used by D_zener is undefined
 

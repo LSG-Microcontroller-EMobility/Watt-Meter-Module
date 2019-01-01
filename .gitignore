@@ -31,5 +31,5 @@
 *.out
 *.app
 .vs/
-watts_calculator_module/obj/
-watts_calculator_module/__vm/
+Watt-Meter-Module/obj/
+Watt-Meter-Module/__vm/

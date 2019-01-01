@@ -145,59 +145,34 @@
   (GlobalState
     (FileView
       (Path "Design Resources")
+      (Path "Design Resources"
+         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN")
+      (Path "Design Resources"
+         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
+         "SCHEMATIC1")
       (Path "Design Resources" "Library")
       (Path "Outputs")
       (Path "PSpice Resources")
       (Path "PSpice Resources" "Model Libraries")
       (Path "PSpice Resources" "Simulation Profiles")
-      (Select "Design Resources"))
+      (Select "Design Resources"
+         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
+         "SCHEMATIC1" "Voltage calcultor"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 2 3 -1 -1 -8 -31 0 200 0 545"))
+        (Placement "44 0 1 -1 -1 -8 -31 0 200 0 545"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -8 -31 286 1418 286 900")
-        (Scroll "440 50")
-        (Zoom "236")
+        (Placement "44 2 3 -1 -1 -8 -31 52 1688 52 504")
+        (Scroll "119 310")
+        (Zoom "200")
         (Occurrence "/"))
       (Path
-         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
+         "C:\REPO\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
       (Schematic "SCHEMATIC1")
-      (Page "zener_divider_voltage"))
-    (Doc
-      (Type "COrSchematicDoc")
-      (Frame
-        (Placement "44 0 1 -1 -1 -8 -31 52 1184 52 666")
-        (Scroll "249 234")
-        (Zoom "236")
-        (Occurrence "/"))
-      (Path
-         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
-      (Schematic "SCHEMATIC1")
-      (Page "Voltage calcultor"))
-    (Doc
-      (Type "COrSchematicDoc")
-      (Frame
-        (Placement "44 0 1 -1 -1 -8 -31 78 1210 78 692")
-        (Scroll "319 282")
-        (Zoom "236")
-        (Occurrence "/"))
-      (Path
-         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
-      (Schematic "SCHEMATIC1")
-      (Page "zener_test_regulation"))
-    (Doc
-      (Type "COrSchematicDoc")
-      (Frame
-        (Placement "44 0 1 -1 -1 -8 -31 208 1795 208 822")
-        (Scroll "191 255")
-        (Zoom "236")
-        (Occurrence "/"))
-      (Path
-         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
-      (Schematic "SCHEMATIC1")
-      (Page "zener test for 10v cutter"))))
+      (Page "Voltage calcultor")))
+  (MPSSessionName "luigi"))
