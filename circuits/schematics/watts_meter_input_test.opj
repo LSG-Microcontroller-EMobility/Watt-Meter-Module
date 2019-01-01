@@ -146,21 +146,13 @@
     (FileView
       (Path "Design Resources")
       (Path "Design Resources"
-         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN")
-      (Path "Design Resources"
-         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
-         "SCHEMATIC1")
-      (Path "Design Resources"
-         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
-         "SCHEMATIC2")
+         "c:\repo\lsg-microcontroller-emobility\watt-meter-module\circuits\schematics\watts_meter_input_test.DSN")
       (Path "Design Resources" "Library")
       (Path "Outputs")
       (Path "PSpice Resources")
       (Path "PSpice Resources" "Model Libraries")
       (Path "PSpice Resources" "Simulation Profiles")
-      (Select "Design Resources"
-         "C:\Repo\LSG-Microcontroller-EMobility\Watt-Meter-Module\circuits\schematics\watts_meter_input_test.DSN"
-         "SCHEMATIC1" "Voltage calcultor"))
+      (Select "Design Resources"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
