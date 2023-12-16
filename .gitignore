@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+.vs/
+watts_calculator_module/obj/
+watts_calculator_module/__vm/
