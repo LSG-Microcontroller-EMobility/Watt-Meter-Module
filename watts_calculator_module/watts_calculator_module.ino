@@ -4,6 +4,14 @@
 
 #include <LiquidCrystal_I2C.h>
 
+#include <SPI.h>
+
+#include <SD.h>
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial sf(99,4);
+
 LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address, if it's not working try 0x27..
 
 double volatile  pulse = 0;
@@ -17,6 +25,16 @@ float volatile ampere = 0.00f;
 float volatile volts = 0.00f;
 
 double volatile total_watts_H = 0.00f;
+
+double volatile total_watts_to_transmit = 0.00f;
+
+double volatile amps_to_transmit = 0.00f;
+
+void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
+
+File myFile;
+
+String fileName = "test.txt";
 
 void setup() {
 
@@ -42,14 +60,40 @@ void setup() {
 
 	analogReference(EXTERNAL);
 
-	batteryVoltageLcdReport1("testo di prova");
+	batteryVoltageLcdReport1("check system");
 
-	lcdPrintMessage("W: ", 0, 0, false); lcdPrintMessage("|", 0, 7, false); lcdPrintMessage("V: ", 0, 8, false);
+	lcdPrintMessage("w: ", 0, 0, false); lcdPrintMessage("|", 0, 7, false,0); lcdPrintMessage("v: ", 0, 8, false);
 
-	lcdPrintMessage("A: ", 1, 0, false); lcdPrintMessage("|", 1, 7, false);
+	lcdPrintMessage("a: ", 1, 0, false); lcdPrintMessage("|", 1, 7, false); lcdPrintMessage("w/h: ", 1, 8, false);
+
+	sd_card_initialize();
+
+	pinMode(3, INPUT_PULLUP);
+
+	attachInterrupt(1, activateSystemInterrupt,FALLING);
+
 }
 
 //int volatile counter_test = 0;
+
+void sd_card_initialize(){
+	// Open serial communications and wait for port to open:
+	while (!Serial) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}
+	Serial.print("Initializing SD card...");
+
+	if (!SD.begin(4)) {
+		Serial.println("initialization failed!");
+		while (1);
+	}
+	Serial.println("initialization done.");
+
+	if (SD.exists(fileName))
+	{
+		SD.remove(fileName);
+	}
+}
 
 void loop() {
 
@@ -61,51 +105,43 @@ void loop() {
 
 	char voltage[5]{};
 
+	char watts_h[5]{};
+
 	itoa(total_watts_H, watts, 10);
 
 	dtostrf(ampere, 5, 2, amps);
 
 	itoa(volts, voltage, 10);
 
+	itoa((ampere * volts), watts_h, 10);
+
 	// prepared for test with higher precision
 	/*pulse = 0;
 	delay(1000);
 	Serial.print(counter_test);
 	while (1);*/
-	Serial.print("watts/h: "); Serial.print(total_watts_H); Serial.print(" amps: "); Serial.print(ampere); Serial.print(" volts: "); Serial.println(volts);
+	Serial.print("watts: "); Serial.print(total_watts_H); Serial.print(" amps: "); Serial.print(ampere); Serial.print(" volts: "); Serial.println(volts);
 
-	lcdPrintMessage(watts, 0, 2, (total_watts_H < 10) ? false : false);
+	lcdPrintMessage(watts, 0, 2, true, 4);
 
-	lcdPrintMessage(voltage, 0, 10, (total_watts_H < 10) ? false : false);
+	lcdPrintMessage(voltage, 0, 10, true, 4);
 
-	lcdPrintMessage(amps, 1, 2, (ampere < 10) ? false : false);
+	lcdPrintMessage(amps, 1, 2, true, 5);
+
+	lcdPrintMessage(watts_h, 1, 12, true, 4);
+
+	// transmitt data to serial.
 
 	//while (1);
-
-	//delay(54000);
-	//if (ampere > 20) {
-	//	digitalWrite(8, LOW);
-	//}
-	//else {
-	//	digitalWrite(8, HIGH);
-	//}
 }
 
-void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear)
+void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
 {
-	char c = ' ';
-
-	uint8_t index = 0;
-
 	if (clear)
 	{
-		while (c != '\0')
+		for (int i = 0; i < clear_lenght; i++)
 		{
-			c = message[index];
-
-			lcd.setCursor(col + index, row); lcd.print(" ");
-
-			index++;
+			lcd.setCursor(col + i, row); lcd.print(" ");
 		}
 	}
 
@@ -114,17 +150,13 @@ void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear)
 	lcd.print(message);
 
 	delay(100);
-
-	//if(clear) delay(200);
 }
 
 void batteryVoltageLcdReport1(String message) {
 
 	lcd.clear();
 
-	//lcd.begin(16, 2);   // iInit the LCD for 16 chars 2 lines
-
-	//lcd.backlight();   // Turn on the backligt (try lcd.noBaklight() to turn it off)
+	lcd.backlight();   // Turn on the backligt (try lcd.noBaklight() to turn it off)
 
 	lcd.setCursor(16, 0); //First line
 
@@ -136,7 +168,7 @@ void batteryVoltageLcdReport1(String message) {
 
 		lcd.print(message.charAt(thisChar));
 
-		delay(350);
+		delay(250);
 	}
 	delay(2000);
 
@@ -163,6 +195,12 @@ ISR(TIMER1_COMPA_vect)
 
 		pulse = 0;
 	}
+}
+
+void activateSystemInterrupt()
+{
+	amps_to_transmit = ampere;
+	total_watts_to_transmit = total_watts_H;
 }
 
 
