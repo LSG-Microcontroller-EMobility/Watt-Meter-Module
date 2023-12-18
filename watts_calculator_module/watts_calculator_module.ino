@@ -1,12 +1,7 @@
-#include <avr/io.h>
 
 #include <Wire.h>  
 
 #include <LiquidCrystal_I2C.h>
-
-#include <SPI.h>
-
-#include <SD.h>
 
 #include <SoftwareSerial.h>
 
@@ -30,11 +25,7 @@ double volatile total_watts_to_transmit = 0.00f;
 
 double volatile amps_to_transmit = 0.00f;
 
-void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
-
-File myFile;
-
-String fileName = "test.txt";
+void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
 
 void setup() {
 
@@ -60,40 +51,38 @@ void setup() {
 
 	analogReference(EXTERNAL);
 
-	batteryVoltageLcdReport1("check system");
+	//Scroll_Function_Lcd_Message("check system");
 
-	lcdPrintMessage("w: ", 0, 0, false); lcdPrintMessage("|", 0, 7, false,0); lcdPrintMessage("v: ", 0, 8, false);
+	Lcd_Print_Message("w: ", 0, 0, false); Lcd_Print_Message("|", 0, 7, false,0); Lcd_Print_Message("v: ", 0, 8, false);
 
-	lcdPrintMessage("a: ", 1, 0, false); lcdPrintMessage("|", 1, 7, false); lcdPrintMessage("w/h: ", 1, 8, false);
-
-	sd_card_initialize();
+	Lcd_Print_Message("a: ", 1, 0, false); Lcd_Print_Message("|", 1, 7, false); Lcd_Print_Message("w/h: ", 1, 8, false);
 
 	pinMode(3, INPUT_PULLUP);
 
-	attachInterrupt(1, activateSystemInterrupt,FALLING);
+	attachInterrupt(1, Activate_System_Interrupt,FALLING);
 
 }
 
 //int volatile counter_test = 0;
 
-void sd_card_initialize(){
-	// Open serial communications and wait for port to open:
-	while (!Serial) {
-		; // wait for serial port to connect. Needed for native USB port only
-	}
-	Serial.print("Initializing SD card...");
-
-	if (!SD.begin(4)) {
-		Serial.println("initialization failed!");
-		while (1);
-	}
-	Serial.println("initialization done.");
-
-	if (SD.exists(fileName))
-	{
-		SD.remove(fileName);
-	}
-}
+//void sd_card_initialize(){
+//	// Open serial communications and wait for port to open:
+//	while (!Serial) {
+//		; // wait for serial port to connect. Needed for native USB port only
+//	}
+//	Serial.print("Initializing SD card...");
+//
+//	if (!SD.begin(4)) {
+//		Serial.println("initialization failed!");
+//		while (1);
+//	}
+//	Serial.println("initialization done.");
+//
+//	if (SD.exists(fileName))
+//	{
+//		SD.remove(fileName);
+//	}
+//}
 
 void loop() {
 
@@ -120,22 +109,29 @@ void loop() {
 	delay(1000);
 	Serial.print(counter_test);
 	while (1);*/
-	Serial.print("watts: "); Serial.print(total_watts_H); Serial.print(" amps: "); Serial.print(ampere); Serial.print(" volts: "); Serial.println(volts);
+	//Serial.print("watts: "); Serial.print(total_watts_H); Serial.print(" amps: "); Serial.print(ampere); Serial.print(" volts: "); Serial.println(volts);
 
-	lcdPrintMessage(watts, 0, 2, true, 4);
+	Lcd_Print_Message(watts, 0, 2, true, 4);
 
-	lcdPrintMessage(voltage, 0, 10, true, 4);
+	Lcd_Print_Message(voltage, 0, 10, true, 4);
 
-	lcdPrintMessage(amps, 1, 2, true, 5);
+	Lcd_Print_Message(amps, 1, 2, true, 5);
 
-	lcdPrintMessage(watts_h, 1, 12, true, 4);
+	Lcd_Print_Message(watts_h, 1, 12, true, 4);
 
 	// transmitt data to serial.
+
+	Send_Data();
 
 	//while (1);
 }
 
-void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
+void Send_Data()
+{
+	sf.println("123");
+}
+
+void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
 {
 	if (clear)
 	{
@@ -152,7 +148,7 @@ void lcdPrintMessage(char message[16], uint8_t row, uint8_t col, bool clear,uint
 	delay(100);
 }
 
-void batteryVoltageLcdReport1(String message) {
+void Scroll_Function_Lcd_Message(String message) {
 
 	lcd.clear();
 
@@ -197,10 +193,13 @@ ISR(TIMER1_COMPA_vect)
 	}
 }
 
-void activateSystemInterrupt()
+void Activate_System_Interrupt()
 {
 	amps_to_transmit = ampere;
 	total_watts_to_transmit = total_watts_H;
+	Serial.println("interrupt");
+	Serial.print(F("send watts: ")); Serial.println(total_watts_to_transmit);
+	Serial.print(F("send amps: ")); Serial.println(amps_to_transmit);
 }
 
 
