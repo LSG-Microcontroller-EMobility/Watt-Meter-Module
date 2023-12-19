@@ -128,7 +128,9 @@ void loop() {
 
 void Send_Data()
 {
-	sf.println("123");
+	sf.print('*');
+	sf.print(amps_to_transmit);
+	sf.print(total_watts_to_transmit);
 }
 
 void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
@@ -197,9 +199,13 @@ void Activate_System_Interrupt()
 {
 	amps_to_transmit = ampere;
 	total_watts_to_transmit = total_watts_H;
+
+#ifdef _DEBUG
 	Serial.println("interrupt");
 	Serial.print(F("send watts: ")); Serial.println(total_watts_to_transmit);
 	Serial.print(F("send amps: ")); Serial.println(amps_to_transmit);
+#endif // _DEBUG
+
 }
 
 
