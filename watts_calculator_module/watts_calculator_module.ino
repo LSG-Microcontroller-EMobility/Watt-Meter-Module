@@ -21,15 +21,17 @@ float volatile volts = 0.00f;
 
 double volatile total_watts_H = 0.00f;
 
-double volatile total_watts_to_transmit = 0.00f;
+float volatile total_watts_to_transmit = 0.00f;
 
-double volatile amps_to_transmit = 0.00f;
+float volatile amps_to_transmit = 0.00f;
 
 void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
 
 void setup() {
 
 	Serial.begin(9600);
+
+	sf.begin(600);
 
 	lcd.begin(16, 2);   // iInit the LCD for 16 chars 2 lines
 
@@ -128,9 +130,12 @@ void loop() {
 
 void Send_Data()
 {
+	//Serial.println(F("send data"));
 	sf.print('*');
 	sf.print(amps_to_transmit);
+	sf.print('\0');
 	sf.print(total_watts_to_transmit);
+	delay(200);
 }
 
 void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
