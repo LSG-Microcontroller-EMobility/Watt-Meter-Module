@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>xml;json;txt;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="documents">
+      <UniqueIdentifier>{06915910-15f9-4c32-ac2a-3ba3015975d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\arduino folders read me.txt">
@@ -26,5 +29,10 @@
     <ClInclude Include="__vm\.watts_calculator_module.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt">
+      <Filter>documents</Filter>
+    </Text>
   </ItemGroup>
 </Project>
