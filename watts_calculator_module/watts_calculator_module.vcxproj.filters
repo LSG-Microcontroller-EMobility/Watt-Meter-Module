@@ -16,10 +16,19 @@
     <Filter Include="documents">
       <UniqueIdentifier>{06915910-15f9-4c32-ac2a-3ba3015975d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="circuit">
+      <UniqueIdentifier>{23345e5a-aed1-4e09-8ae4-779fe413f86f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\arduino folders read me.txt">
       <Filter>Misc Files</Filter>
+    </None>
+    <None Include="..\circuits\board\ACS758.brd">
+      <Filter>circuit</Filter>
+    </None>
+    <None Include="..\circuits\board\watts_meter.brd">
+      <Filter>circuit</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
