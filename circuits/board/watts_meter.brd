@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.6.2">
+<eagle version="8.5.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -778,9 +778,6 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <package3d name="DIODE_F126Z12" urn="urn:adsk.eagle:package:13316/1" type="box" library_version="3">
 <description>DIODE
 diameter 3 mm, horizontal, grid 12.7 mm</description>
-<packageinstances>
-<packageinstance name="DIODE_F126Z12"/>
-</packageinstances>
 </package3d>
 </packages3d>
 </library>
@@ -1956,9 +1953,6 @@ grid 2.5 mm, outline 2.4 x 4.4 mm</description>
 <package3d name="C025-024X044" urn="urn:adsk.eagle:package:23630/1" type="box" library_version="11">
 <description>CAPACITOR
 grid 2.5 mm, outline 2.4 x 4.4 mm</description>
-<packageinstances>
-<packageinstance name="C025-024X044"/>
-</packageinstances>
 </package3d>
 </packages3d>
 </library>
@@ -2000,9 +1994,6 @@ grid 2.5 mm, outline 2.4 x 4.4 mm</description>
 <packages3d>
 <package3d name="HC49/S" urn="urn:adsk.eagle:package:12071/1" type="box" library_version="2">
 <description>CRYSTAL</description>
-<packageinstances>
-<packageinstance name="HC49/S"/>
-</packageinstances>
 </package3d>
 </packages3d>
 </library>
@@ -2096,9 +2087,6 @@ design rules under a new name.</description>
 <param name="checkRestrict" value="1"/>
 <param name="checkStop" value="0"/>
 <param name="checkValues" value="0"/>
-<param name="checkNames" value="1"/>
-<param name="checkWireStubs" value="1"/>
-<param name="checkPolygonWidth" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -2243,9 +2231,9 @@ design rules under a new name.</description>
 <attribute name="NAME" x="103.759" y="9.144" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="106.045" y="7.366" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="E$3" library="con-lstb" library_urn="urn:adsk.eagle:library:162" package="MA05-1" package3d_urn="urn:adsk.eagle:package:8332/1" value="" x="86.36" y="21.59" smashed="yes" rot="R270">
-<attribute name="NAME" x="88.011" y="27.94" size="1.27" layer="25" ratio="10" rot="R270"/>
-<attribute name="VALUE" x="83.439" y="24.13" size="1.27" layer="27" ratio="10" rot="R270"/>
+<element name="E$3" library="con-lstb" library_urn="urn:adsk.eagle:library:162" package="MA05-1" package3d_urn="urn:adsk.eagle:package:8332/1" value="" x="86.36" y="20.955" smashed="yes" rot="R270">
+<attribute name="NAME" x="88.011" y="27.305" size="1.27" layer="25" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="83.439" y="23.495" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="E$6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="107.95" y="64.135" smashed="yes">
 <attribute name="NAME" x="109.855" y="64.516" size="1.27" layer="25" ratio="10"/>
@@ -2288,7 +2276,7 @@ design rules under a new name.</description>
 <element name="E$1" library="LSGPackages" package="ATMEGA328" value="" x="62.23" y="26.67" smashed="yes"/>
 <element name="E$5" library="eagle-ltspice" package="0204/7" value="10k" x="45.72" y="17.145" smashed="yes">
 <attribute name="NAME" x="43.18" y="18.4404" size="0.9906" layer="25" ratio="10"/>
-<attribute name="VALUE" x="44.0944" y="15.3924" size="0.9906" layer="27" ratio="10"/>
+<attribute name="VALUE" x="44.0944" y="14.7574" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="E$16" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C025-024X044" package3d_urn="urn:adsk.eagle:package:23630/1" value="" x="41.91" y="22.86" smashed="yes" rot="R90">
 <attribute name="NAME" x="40.513" y="21.082" size="1.27" layer="25" ratio="10" rot="R90"/>
@@ -2372,11 +2360,11 @@ design rules under a new name.</description>
 <wire x1="63.5" y1="22.86" x2="60.96" y2="30.48" width="0" layer="19" extent="1-1"/>
 <wire x1="59.69" y1="17.78" x2="63.5" y2="22.86" width="0" layer="19" extent="1-1"/>
 <wire x1="76.2" y1="18.415" x2="63.5" y2="22.86" width="0" layer="19" extent="1-1"/>
-<wire x1="86.36" y1="19.05" x2="76.2" y2="18.415" width="0" layer="19" extent="1-1"/>
-<wire x1="86.36" y1="21.59" x2="86.36" y2="19.05" width="0" layer="19" extent="1-1"/>
-<wire x1="86.36" y1="24.13" x2="86.36" y2="21.59" width="0" layer="19" extent="1-1"/>
-<wire x1="86.36" y1="26.67" x2="86.36" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="86.36" y1="16.51" x2="86.36" y2="19.05" width="0" layer="19" extent="1-1"/>
+<wire x1="86.36" y1="18.415" x2="76.2" y2="18.415" width="0" layer="19" extent="1-1"/>
+<wire x1="86.36" y1="20.955" x2="86.36" y2="18.415" width="0" layer="19" extent="1-1"/>
+<wire x1="86.36" y1="23.495" x2="86.36" y2="20.955" width="0" layer="19" extent="1-1"/>
+<wire x1="86.36" y1="26.035" x2="86.36" y2="23.495" width="0" layer="19" extent="1-1"/>
+<wire x1="86.36" y1="15.875" x2="86.36" y2="18.415" width="0" layer="19" extent="1-1"/>
 <wire x1="50.165" y1="39.37" x2="60.96" y2="30.48" width="0" layer="19" extent="1-1"/>
 <wire x1="39.37" y1="37.56" x2="50.165" y2="39.37" width="0" layer="19" extent="1-1"/>
 <wire x1="39.37" y1="34.29" x2="39.37" y2="37.56" width="0" layer="19" extent="1-1"/>
@@ -2473,13 +2461,6 @@ design rules under a new name.</description>
 <wire x1="62.23" y1="49.53" x2="61.9125" y2="55.245" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
-<mfgpreviewcolors>
-<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
-<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
-<mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
-<mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
-<mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
-</mfgpreviewcolors>
 </board>
 </drawing>
 <compatibility>
