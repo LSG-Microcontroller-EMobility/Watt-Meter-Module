@@ -21,7 +21,7 @@ float volatile total_watts_to_transmit = 0.00f;
 
 float volatile amps_to_transmit = 0.00f;
 
-void Lcd_Print_Message(char message[16], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
+void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
 
 volatile float delta = 0.00f;
 
@@ -60,9 +60,9 @@ void setup() {
 
 	//Scroll_Function_Lcd_Message("check system");
 
-	Lcd_Print_Message("w: ", 0, 0, false); Lcd_Print_Message("|", 0, 7, false,0); Lcd_Print_Message("v: ", 0, 8, false);
+	Lcd_Print_Message("w: ", 0, 0, false); Lcd_Print_Message("|", 0, 8, false,0); Lcd_Print_Message("v: ", 0, 9, false);
 
-	Lcd_Print_Message("a: ", 1, 0, false); Lcd_Print_Message("|", 1, 7, false); Lcd_Print_Message("w/h: ", 1, 8, false);
+	Lcd_Print_Message("a: ", 1, 0, false); Lcd_Print_Message("|", 1, 8, false); Lcd_Print_Message("wh: ", 1, 9, false);
 
 	pinMode(3, INPUT_PULLUP);
 
@@ -117,23 +117,27 @@ void loop() {
 	Serial.print(F("watts : ")); Serial.println(((ampere) * volts));
 	Serial.println(F("-------------------------------------"));
 
-	char watts[5]{'\0'};
+	char watts[7]{'\0'};
 
-	char amps[8]{};
+	char voltage[6]{ '\0' };
 
-	char voltage[5]{};
+	char amps[7]{'\0'};
 
-	char watts_h[5]{};
+	char watts_h[5]{'\0'};
 
-	itoa(total_watts_H, watts_h, 10);
+	dtostrf((ampere * volts), 6, 1, watts);
 
-	dtostrf(ampere, 5, 2, amps);
+	//itoa((ampere * volts), watts, 10);
 
-	itoa(volts, voltage, 10);
+	//itoa(volts, voltage, 10);
 
-	//dtostrf((ampere * volts), 5, 1, watts);
+	dtostrf(volts, 5, 2, voltage);
 
-	itoa((ampere * volts), watts, 10);
+	dtostrf(ampere, 6, 2, amps);
+
+	dtostrf(total_watts_H, 4, 0, watts_h);
+
+	//itoa(total_watts_H, watts_h, 10);
 
 	// prepared for test with higher precision
 	/*pulse = 0;
@@ -144,7 +148,7 @@ void loop() {
 	
 	Lcd_Print_Message(watts, 0, 2, true, 4);
 
-	Lcd_Print_Message(voltage, 0, 10, true, 4);
+	Lcd_Print_Message(voltage, 0, 11, true, 4);
 
 	Lcd_Print_Message(amps, 1, 2, true, 5);
 
@@ -169,7 +173,7 @@ void Send_Data()
 	delay(200);
 }
 
-void Lcd_Print_Message(char message[5], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
+void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
 {
 	if (clear)
 	{
