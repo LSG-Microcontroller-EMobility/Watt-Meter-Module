@@ -38,12 +38,7 @@ void setup() {
 
 	lcd.clear();
 
-	for (int i = 0; i < 100; i++)
-	{
-		delta = delta + ((3.25f / 1024.00f) * analogRead(A0));
-	}
-
-	delta = delta / 100.00f;
+	
 
 	
 
@@ -72,6 +67,13 @@ void setup() {
 	pinMode(3, INPUT_PULLUP);
 
 	attachInterrupt(1, Activate_System_Interrupt,FALLING);
+
+	for (int i = 0; i < 100; i++)
+	{
+		delta = delta + ((3.40f / 1024.00f) * analogRead(A0));
+	}
+
+	delta = delta / 100.00f;
 
 	// Imposta Timer1 in modalità CTC
 	TIMSK1 = (1 << OCIE1A);          // Abilita l'interrupt di confronto A
@@ -212,14 +214,14 @@ void Scroll_Function_Lcd_Message(String message) {
 
 ISR(TIMER1_COMPA_vect)
 {
-		float value = ((3.25f / 1024.00f) * analogRead(A0)) - delta;
+		float value = ((3.40f / 1024.00f) * analogRead(A0)) - delta;
 
 		ampere = value < 0.055f ? 0.00f : value;
 
 		ampere = (ampere / 0.060f);
 
 		//todo: IMPORTANTE MODIFICARE ZENER CON UN 3.9v
-		volts = (((3.25f / 1024.00f) * analogRead(A1)));
+		volts = (((3.40f / 1024.00f) * analogRead(A1)));
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
 }
