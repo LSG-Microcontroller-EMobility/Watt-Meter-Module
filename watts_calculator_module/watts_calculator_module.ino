@@ -1,11 +1,16 @@
 
+//20V-- - R1(8.2k?) -- - +-- - R2(1.7k?) -- - GND
+//						|
+//				Vout(circa 3.4V)
+
+
 #include <Wire.h>  
 
 #include <LiquidCrystal_I2C.h>
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial sf(99,4);
+SoftwareSerial sf(99,8);
 
 LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address, if it's not working try 0x27..
 
@@ -37,24 +42,6 @@ void setup() {
 	lcd.begin(16, 2);   // iInit the LCD for 16 chars 2 lines
 
 	lcd.clear();
-
-	
-
-	
-
-	//TIMSK1 = _BV(OCIE1A); // Output Compare Match A Interrupt Enable
-
-	////DDRB |= (1 << PB0);
-	//TCCR1A = 0b00000001; // fast pwm
-
-	//TCCR1B = 0b00001010; // x1
-
-	//PORTB &= (1 << PB0);
-	pinMode(8, OUTPUT);
-
-	digitalWrite(8, HIGH);
-
-	analogWrite(9, 127);
 
 	analogReference(EXTERNAL);
 
@@ -135,9 +122,9 @@ void loop() {
 
 	dtostrf(ampere, 6, 2, amps);
 
-	dtostrf(total_watts_H, 4, 0, watts_h);
+	//dtostrf(total_watts_H, 4, 0, watts_h);
 
-	//itoa(total_watts_H, watts_h, 10);
+	itoa(total_watts_H, watts_h, 10);
 
 	// prepared for test with higher precision
 	/*pulse = 0;
@@ -153,8 +140,6 @@ void loop() {
 	Lcd_Print_Message(amps, 1, 2, true, 5);
 
 	Lcd_Print_Message(watts_h, 1, 12, true, 4);
-
-
 
 	// transmitt data to serial.
 
@@ -224,7 +209,6 @@ ISR(TIMER1_COMPA_vect)
 
 		ampere = (ampere / 0.060f);
 
-		//todo: IMPORTANTE MODIFICARE ZENER CON UN 3.9v
 		volts = (((3.40f / 1024.00f) * analogRead(A1)));
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
@@ -234,6 +218,9 @@ void Activate_System_Interrupt()
 {
 	amps_to_transmit = ampere;
 	total_watts_to_transmit = total_watts_H;
+
+	/*amps_to_transmit = 50.00f;
+	total_watts_to_transmit = 1500;*/
 
 #ifdef _DEBUG
 	Serial.println(F("interrupt"));
