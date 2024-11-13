@@ -35,9 +35,9 @@ void setup() {
 
 	Serial.begin(9600);
 
-	Serial.println(F("start"));
-
 	sf.begin(600);
+
+	Serial.println(F("start"));
 
 	lcd.begin(16, 2);   // iInit the LCD for 16 chars 2 lines
 
@@ -97,20 +97,32 @@ void setup() {
 
 void loop() {
 
-	Serial.println(F("-------------------------------------")); 
+	//print_to_console();
+
+	lcd_print_message();
+	
+	Send_Data();
+}
+
+void print_to_console()
+{
+	Serial.println(F("-------------------------------------"));
 	Serial.print(F("volts : ")); Serial.println(volts);
 	Serial.print(F("ampere : ")); Serial.println((ampere));
 	Serial.print(F("total_watts_H : ")); Serial.println(total_watts_H);
 	Serial.print(F("watts : ")); Serial.println(((ampere) * volts));
 	Serial.println(F("-------------------------------------"));
+}
 
-	char watts[7]{'\0'};
+void lcd_print_message()
+{
+	char watts[7]{ '\0' };
 
 	char voltage[6]{ '\0' };
 
-	char amps[7]{'\0'};
+	char amps[7]{ '\0' };
 
-	char watts_h[5]{'\0'};
+	char watts_h[5]{ '\0' };
 
 	dtostrf((ampere * volts), 6, 1, watts);
 
@@ -125,14 +137,6 @@ void loop() {
 	//dtostrf(total_watts_H, 4, 0, watts_h);
 
 	itoa(total_watts_H, watts_h, 10);
-
-	// prepared for test with higher precision
-	/*pulse = 0;
-	delay(1000);
-	Serial.print(counter_test);
-	while (1);*/
-	//Serial.print("watts: "); Serial.print(total_watts_H); Serial.print(" amps: "); Serial.print(ampere); Serial.print(" volts: "); Serial.println(volts);
-	
 	Lcd_Print_Message(watts, 0, 2, true, 4);
 
 	Lcd_Print_Message(voltage, 0, 11, true, 4);
@@ -141,11 +145,6 @@ void loop() {
 
 	Lcd_Print_Message(watts_h, 1, 12, true, 4);
 
-	// transmitt data to serial.
-
-	Send_Data();
-
-	//while (1);
 }
 
 void Send_Data()
