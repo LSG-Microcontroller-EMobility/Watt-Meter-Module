@@ -30,6 +30,14 @@ void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear, ui
 
 volatile float delta = 0.00f;
 
+char watts_to_display[7]{ '\0' };
+
+char voltage_to_display[6]{ '\0' };
+
+char amps_to_display[7]{ '\0' };
+
+char watts_h_to_display[5]{ '\0' };
+
 
 void setup() {
 
@@ -116,34 +124,26 @@ void print_to_console()
 
 void lcd_print_message()
 {
-	char watts[7]{ '\0' };
-
-	char voltage[6]{ '\0' };
-
-	char amps[7]{ '\0' };
-
-	char watts_h[5]{ '\0' };
-
-	dtostrf((ampere * volts), 6, 1, watts);
+	dtostrf((ampere * volts), 6, 1, watts_to_display);
 
 	//itoa((ampere * volts), watts, 10);
-
 	//itoa(volts, voltage, 10);
 
-	dtostrf(volts, 5, 2, voltage);
+	dtostrf(volts, 5, 2, voltage_to_display);
 
-	dtostrf(ampere, 6, 2, amps);
+	dtostrf(ampere, 6, 2, amps_to_display);
 
 	//dtostrf(total_watts_H, 4, 0, watts_h);
 
-	itoa(total_watts_H, watts_h, 10);
-	Lcd_Print_Message(watts, 0, 2, true, 4);
+	itoa(total_watts_H, watts_h_to_display, 10);
 
-	Lcd_Print_Message(voltage, 0, 11, true, 4);
+	Lcd_Print_Message(watts_to_display, 0, 2, true, 4);
 
-	Lcd_Print_Message(amps, 1, 2, true, 5);
+	Lcd_Print_Message(voltage_to_display, 0, 11, true, 4);
 
-	Lcd_Print_Message(watts_h, 1, 12, true, 4);
+	Lcd_Print_Message(amps_to_display, 1, 2, true, 5);
+
+	Lcd_Print_Message(watts_h_to_display, 1, 12, true, 4);
 
 }
 
@@ -199,16 +199,27 @@ void Scroll_Function_Lcd_Message(String message) {
 	lcd.clear();
 }
 
+float volatile value;
 
 ISR(TIMER1_COMPA_vect)
 {
-		float value = ((3.40f / 1024.00f) * analogRead(A0)) - delta;
+		value = ((3.40f / 1024.00f) * analogRead(A0));
 
-		ampere = value < 0.055f ? 0.00f : value;
+		value += ((3.40f / 1024.00f) * analogRead(A0));
+
+		value += ((3.40f / 1024.00f) * analogRead(A0));
+
+		ampere = ((value / 3) - delta) < 0.055f ? 0.00f : ((value / 3) - delta);
 
 		ampere = (ampere / 0.060f);
 
-		volts = (((3.40f / 1024.00f) * analogRead(A1)));
+		volts = (((3.40f / 1024.00f) * analogRead(A1))); 
+
+		volts += (((3.40f / 1024.00f) * analogRead(A1)));
+
+		volts += (((3.40f / 1024.00f) * analogRead(A1)));
+
+		volts = ((volts / 3) * (20.00f / 3.40f)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
 }
