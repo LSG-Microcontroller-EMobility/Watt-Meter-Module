@@ -3,6 +3,9 @@
 //						|
 //				Vout(circa 3.4V)
 
+//#define SERIAL_DEBUG
+
+#define SIMULATE_ATTINY_DATA_SEGNAL
 
 #include <Wire.h>  
 
@@ -38,6 +41,7 @@ char amps_to_display[7]{ '\0' };
 
 char watts_h_to_display[5]{ '\0' };
 
+float volatile value;
 
 void setup() {
 
@@ -61,6 +65,11 @@ void setup() {
 
 	pinMode(3, INPUT_PULLUP);
 
+#ifdef SIMULATE_ATTINY_DATA_SEGNAL
+	pinMode(7, OUTPUT);
+#endif // SIMULATION
+
+
 	attachInterrupt(1, Activate_System_Interrupt,FALLING);
 
 	for (int i = 0; i < 100; i++)
@@ -82,30 +91,10 @@ void setup() {
 	
 }
 
-//int volatile counter_test = 0;
-
-//void sd_card_initialize(){
-//	// Open serial communications and wait for port to open:
-//	while (!Serial) {
-//		; // wait for serial port to connect. Needed for native USB port only
-//	}
-//	Serial.print("Initializing SD card...");
-//
-//	if (!SD.begin(4)) {
-//		Serial.println("initialization failed!");
-//		while (1);
-//	}
-//	Serial.println("initialization done.");
-//
-//	if (SD.exists(fileName))
-//	{
-//		SD.remove(fileName);
-//	}
-//}
-
 void loop() {
-
-	//print_to_console();
+#ifdef SERIAL_DEBUG
+	print_to_console();
+#endif // DEBUG
 
 	lcd_print_message();
 	
@@ -149,7 +138,6 @@ void lcd_print_message()
 
 void Send_Data()
 {
-	//Serial.println(F("send data"));
 	sf.print('*');
 	sf.print(amps_to_transmit);
 	sf.print('\0');
@@ -198,9 +186,7 @@ void Scroll_Function_Lcd_Message(String message) {
 
 	lcd.clear();
 }
-
-float volatile value;
-
+	
 ISR(TIMER1_COMPA_vect)
 {
 		value = ((3.40f / 1024.00f) * analogRead(A0));
@@ -222,6 +208,15 @@ ISR(TIMER1_COMPA_vect)
 		volts = ((volts / 3) * (20.00f / 3.40f)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
+
+#ifdef SIMULATE_ATTINY_DATA_SEGNAL
+		digitalWrite(7, HIGH);
+
+		digitalWrite(7, LOW);
+#endif // SIMULATION
+
+
+	
 }
 
 void Activate_System_Interrupt()
