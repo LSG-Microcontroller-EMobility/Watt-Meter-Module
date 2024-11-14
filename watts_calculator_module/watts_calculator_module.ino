@@ -49,7 +49,11 @@ void setup() {
 
 	sf.begin(600);
 
+	pinMode(3, INPUT_PULLUP);
+
+#ifdef DEBUG
 	Serial.println(F("start"));
+#endif // DEBUG
 
 	lcd.begin(16, 2);   // iInit the LCD for 16 chars 2 lines
 
@@ -63,21 +67,22 @@ void setup() {
 
 	Lcd_Print_Message("a: ", 1, 0, false); Lcd_Print_Message("|", 1, 8, false); Lcd_Print_Message("wh: ", 1, 9, false);
 
-	pinMode(3, INPUT_PULLUP);
-
-#ifdef SIMULATE_ATTINY_DATA_SEGNAL
-	pinMode(7, OUTPUT);
-#endif // SIMULATION
-
-
-	attachInterrupt(1, Activate_System_Interrupt,FALLING);
-
 	for (int i = 0; i < 100; i++)
 	{
 		delta = delta + ((3.40f / 1024.00f) * analogRead(A0));
 	}
 
 	delta = delta / 100.00f;
+
+#ifdef SIMULATE_ATTINY_DATA_SEGNAL
+	pinMode(7, OUTPUT);
+#endif // SIMULATION
+
+	
+
+	attachInterrupt(1, Activate_System_Interrupt, FALLING);
+
+
 
 	// Imposta Timer1 in modalità CTC
 	TIMSK1 = (1 << OCIE1A);          // Abilita l'interrupt di confronto A
@@ -215,8 +220,6 @@ ISR(TIMER1_COMPA_vect)
 		digitalWrite(7, LOW);
 #endif // SIMULATION
 
-
-	
 }
 
 void Activate_System_Interrupt()
