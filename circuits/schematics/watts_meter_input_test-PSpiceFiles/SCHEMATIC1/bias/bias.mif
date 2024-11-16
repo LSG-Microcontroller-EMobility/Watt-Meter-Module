@@ -1,1 +1,3 @@
- lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-pspicefiles\watts_meter_input_test.lib, offset=979, size=84
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=1164, size=84
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=170, size=540
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=42, size=103

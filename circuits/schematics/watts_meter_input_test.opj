@@ -63,6 +63,19 @@
         (Type "PSpice Profile"))))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
+    (Dbreak
+      (FullPartName "Dbreak.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
     (VDC
       (FullPartName "VDC.Normal")
       (LibraryName
@@ -82,16 +95,6 @@
       (FullPartName "NPN DIAC.Normal")
       (LibraryName
          "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB")
-      (DeviceIndex "0"))
-    (Dbreak
-      (FullPartName "Dbreak.Normal")
-      (LibraryName
-         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
-      (DeviceIndex "0"))
-    (R
-      (FullPartName "R.Normal")
-      (LibraryName
-         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
       (DeviceIndex "0"))
     (VSIN
       (FullPartName "VSIN.Normal")
@@ -124,13 +127,8 @@
       (Path "Design Resources"
          "C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test.DSN"
          "SCHEMATIC1")
-      (Path "Outputs")
-      (Path "PSpice Resources")
-      (Path "PSpice Resources" "Model Libraries")
-      (Path "PSpice Resources" "Simulation Profiles")
-      (Select "Design Resources"
-         "C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test.DSN"
-         "SCHEMATIC1" "zener_divider_voltage"))
+      (Path "Design Resources" "Library")
+      (Path "Outputs"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
@@ -141,10 +139,28 @@
       (Type "COrSchematicDoc")
       (Frame
         (Placement "44 2 3 -1 -1 -8 -31 156 1743 156 740")
-        (Scroll "0 46")
+        (Scroll "258 51")
         (Zoom "228")
         (Occurrence "/"))
       (Path
          "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
       (Schematic "SCHEMATIC1")
-      (Page "zener_divider_voltage"))))
+      (Page "zener_divider_voltage"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 78 1665 78 692")
+        (Scroll "1156 878")
+        (Zoom "472")
+        (Occurrence "/"))
+      (Path
+         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))
+    (Doc
+      (Type "TextFile")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 156 1743 156 770"))
+      (Path
+         "C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\SCHEMATIC1\SCHEMATIC1.net")
+      (Scroll "0"))))

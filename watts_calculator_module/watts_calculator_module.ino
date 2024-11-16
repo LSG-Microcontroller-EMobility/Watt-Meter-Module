@@ -78,11 +78,7 @@ void setup() {
 	pinMode(7, OUTPUT);
 #endif // SIMULATION
 
-	
-
 	attachInterrupt(1, Activate_System_Interrupt, FALLING);
-
-
 
 	// Imposta Timer1 in modalità CTC
 	TIMSK1 = (1 << OCIE1A);          // Abilita l'interrupt di confronto A
@@ -127,7 +123,7 @@ void lcd_print_message()
 
 	dtostrf(ampere, 6, 2, amps_to_display);
 
-	//dtostrf(total_watts_H, 4, 0, watts_h);
+	//dtostrf(total_watts_H, 4, 0, watts_h);\
 
 	itoa(total_watts_H, watts_h_to_display, 10);
 

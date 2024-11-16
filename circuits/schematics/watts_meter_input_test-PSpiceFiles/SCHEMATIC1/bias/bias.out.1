@@ -1,7 +1,7 @@
 
-**** 12/31/23 16:12:34 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+**** 11/14/24 15:44:43 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\cellmanagersystem\cellmanagersystem\orcad\schematics\watts_m
+ ** Profile: "SCHEMATIC1-bias"  [ C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
 
 
  ****     CIRCUIT DESCRIPTION
@@ -18,7 +18,7 @@
 *Libraries: 
 * Profile Libraries :
 * Local Libraries :
-.LIB "../../../watts_meter_input_test-pspicefiles/watts_meter_input_test.lib" 
+.LIB "../../../watts_meter_input_test-PSpiceFiles/WATTS_METER_INPUT_TEST.lib" 
 * From [PSPICE NETLIST] section of C:\Users\luigi.santagada\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
 .lib "nomd.lib" 
 
@@ -34,146 +34,27 @@
 * source WATTS_METER_INPUT_TEST
 V_V3         N14420 0  
 +SIN 70 10 0.5 0 0 0
-R_R1         N14637 0  2.2k TC=0,0 
-D_D1         N14637 N14420 1N5371B 
-R_R2         N14637 N17448  10k TC=0,0 
-R_R3         N17448 0  2k TC=0,0 
-Q_Q1         N17411 N17448 0 Q2n2222a 
-V_V5         N17442 0 5Vdc
-R_R4         N17411 N17442  2k TC=0,0 
+D_D1-60V         N14637 N14420 1N5371B 
+R_R2         N14637 N20148  8.2k TC=0,0 
+R_R3         N20148 0  1.7k TC=0,0 
+D_D1         N20039 0 ZENER_20V_0_5W 
+V_V4         N20035 0  
++SIN 70 10 0.5 0 0 0
+R_R4         N20035 N20039  1k TC=0,0 
+R_R5         N20576 N20148  1.7k TC=0,0 
+D_D2         0 N20576 DI_1N4733A 
 
 **** RESUMING bias.cir ****
 .END
-
-**** 12/31/23 16:12:34 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\cellmanagersystem\cellmanagersystem\orcad\schematics\watts_m
+WARNING(ORPSIM-15223): Library file C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib has changed since index file WATTS_METER_INPUT_TEST.ind was created.
 
+WARNING(ORPSIM-15227): The timestamp changed from Thu Nov 14 14:18:42 2024 to Thu Nov 14 15:43:44 2024.
 
- ****     Diode MODEL PARAMETERS
+INFO(ORPSIM-15422): Making new index file WATTS_METER_INPUT_TEST.ind for library file WATTS_METER_INPUT_TEST.lib.
 
-
-******************************************************************************
+Index has 4 entries from 1 file(s).
 
 
-
-
-               1N5371B         
-          IS   15.400000E-18 
-          BV   60            
-         IBV     .02         
-         NBV   30            
-          RS     .1          
-          TT   10.000000E-09 
-         CJO   10.000000E-12 
-         XTI    1            
-
-
-**** 12/31/23 16:12:34 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
-
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\cellmanagersystem\cellmanagersystem\orcad\schematics\watts_m
-
-
- ****     BJT MODEL PARAMETERS
-
-
-******************************************************************************
-
-
-
-
-               Q2n2222a        
-               NPN             
-       LEVEL    1            
-          IS   38.818400E-15 
-          EG    1.05         
-          BF  929.846        
-          NF    1.10496      
-         VAF   16.5003       
-         IKF     .019539     
-         ISE   10.168000E-12 
-          NE    1.94752      
-          BR   48.4545       
-          NR    1.07004      
-         VAR   40.538        
-         IKR     .19539      
-         ISC   10.168000E-12 
-          NC    4            
-         ISS    0            
-          RB     .1          
-         RBM     .1          
-         IRB     .1          
-          RE  100.000000E-06 
-          RC     .426673     
-         CJE   22.367700E-12 
-         VJE     .582701     
-         MJE     .63466      
-         CJC   22.394300E-12 
-         VJC     .576146     
-         MJC     .632796     
-        XCJC    1            
-         CJS    0            
-         VJS     .75         
-         MJS     .5          
-          FC     .170253     
-          TF  406.711000E-12 
-         XTF    3.92912      
-         VTF   17.712600E+03 
-         ITF     .4334       
-          TR  100.000000E-09 
-         XTB     .1          
-         XTI    1            
-          KF    0            
-          AF    1            
-          CN    2.42         
-           D     .87         
-
-
-**** 12/31/23 16:12:34 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
-
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\cellmanagersystem\cellmanagersystem\orcad\schematics\watts_m
-
-
- ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
-
-
-******************************************************************************
-
-
-
- NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
-
-
-(N14420)   70.0000 (N14637)   10.9350 (N17411)     .0318 (N17442)    5.0000     
-
-(N17448)     .7841 
-
-
-
-
-    VOLTAGE SOURCE CURRENTS
-    NAME         CURRENT
-
-    V_V3        -5.986E-03
-    V_V5        -2.484E-03
-
-    TOTAL POWER DISSIPATION   4.31E-01  WATTS
-
-
-
-          JOB CONCLUDED
-
-**** 12/31/23 16:12:34 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
-
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\cellmanagersystem\cellmanagersystem\orcad\schematics\watts_m
-
-
- ****     JOB STATISTICS SUMMARY
-
-
-******************************************************************************
-
-
-
-  Total job time (using Solver 1)   =         .03
+ERROR(ORPSIM-15113): Model DI_1N4733A used by D_D2 is undefined
 

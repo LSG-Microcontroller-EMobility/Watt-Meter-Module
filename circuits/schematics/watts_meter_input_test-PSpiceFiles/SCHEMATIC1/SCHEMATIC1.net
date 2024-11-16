@@ -1,7 +1,12 @@
 * source WATTS_METER_INPUT_TEST
 V_V3         N14420 0  
 +SIN 70 10 0.5 0 0 0
-R_R1         N14637 0  2.2k TC=0,0 
 D_D1-60V         N14637 N14420 1N5371B 
-R_R2         N14637 N152160  10k TC=0,0 
-R_R3         N152160 0  2k TC=0,0 
+R_R2         N14637 N20148  8.2k TC=0,0 
+R_R3         N20148 0  1.7k TC=0,0 
+D_D1         N20039 0 ZENER_20V_0_5W 
+V_V4         N20035 0  
++SIN 70 10 0.5 0 0 0
+R_R4         N20035 N20039  1k TC=0,0 
+R_R5         N20576 N20148  2.2k TC=0,0 
+D_D2-5_D2-5_1V         0 N20576 1N4733A 
