@@ -1,5 +1,5 @@
 
-**** 11/14/24 15:44:43 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+**** 11/18/24 18:03:40 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
  ** Profile: "SCHEMATIC1-bias"  [ C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
 
@@ -34,27 +34,17 @@
 * source WATTS_METER_INPUT_TEST
 V_V3         N14420 0  
 +SIN 70 10 0.5 0 0 0
-D_D1-60V         N14637 N14420 1N5371B 
-R_R2         N14637 N20148  8.2k TC=0,0 
-R_R3         N20148 0  1.7k TC=0,0 
-D_D1         N20039 0 ZENER_20V_0_5W 
+D_D1-60V         N25679 N14420 1N5371B 
 V_V4         N20035 0  
 +SIN 70 10 0.5 0 0 0
-R_R4         N20035 N20039  1k TC=0,0 
-R_R5         N20576 N20148  1.7k TC=0,0 
-D_D2         0 N20576 DI_1N4733A 
+D_D2-5_D2-5_1V         N26542 N26548 1N4733A 
+R_R7         0 N26542  2.2k TC=0,0 
+X_R8         N20035 N259032 0 POT PARAMS: SET=0.5 VALUE=1K
+R_R9         0 N259032  2k TC=0,0 
+R_R11         0 N26548  2.2k TC=0,0 
 
 **** RESUMING bias.cir ****
 .END
 
-WARNING(ORPSIM-15223): Library file C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib has changed since index file WATTS_METER_INPUT_TEST.ind was created.
-
-WARNING(ORPSIM-15227): The timestamp changed from Thu Nov 14 14:18:42 2024 to Thu Nov 14 15:43:44 2024.
-
-INFO(ORPSIM-15422): Making new index file WATTS_METER_INPUT_TEST.ind for library file WATTS_METER_INPUT_TEST.lib.
-
-Index has 4 entries from 1 file(s).
-
-
-ERROR(ORPSIM-15113): Model DI_1N4733A used by D_D2 is undefined
+ERROR(ORPSIM-15141): Less than 2 connections at node N25679.
 
