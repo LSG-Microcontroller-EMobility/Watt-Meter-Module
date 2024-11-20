@@ -4,6 +4,7 @@
         ("Dbreak")
         ("R")
         ("POT")
+        ("Sw_tOpen")
     )
     ("instances"
         ("V3"
@@ -12,7 +13,7 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"-734.9mW")
+                    ("value"	"-5.304W")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("VAMPL"
@@ -55,55 +56,12 @@
             ("level"	"0")
             ("model_params"
                 ("BiasValue Power"
-                    ("value"	"624.7mW")
+                    ("value"	"4.625W")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("AREA"
                     ("value"	"")
                     ("pspice_param"	"AREA")
-                )
-            )
-        )
-        ("V4"
-            ("device_name"	"VSIN")
-            ("pspice_path"	"V_V4")
-            ("level"	"0")
-            ("model_params"
-                ("FREQ"
-                    ("value"	"0.5")
-                    ("pspice_param"	"FREQ")
-                )
-                ("VOFF"
-                    ("value"	"70")
-                    ("pspice_param"	"VOFF")
-                )
-                ("VAMPL"
-                    ("value"	"10")
-                    ("pspice_param"	"VAMPL")
-                )
-                ("BiasValue Power"
-                    ("value"	"-5.444W")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("PHASE"
-                    ("value"	"0")
-                    ("pspice_param"	"PHASE")
-                )
-                ("DF"
-                    ("value"	"0")
-                    ("pspice_param"	"DF")
-                )
-                ("TD"
-                    ("value"	"0")
-                    ("pspice_param"	"TD")
-                )
-                ("AC"
-                    ("value"	"")
-                    ("pspice_param"	"AC")
-                )
-                ("DC"
-                    ("value"	"")
-                    ("pspice_param"	"DC")
                 )
             )
         )
@@ -128,73 +86,7 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"7.136e-21W")
-                    ("pspice_param"	"BiasValue Power")
-                )
-                ("TC2"
-                    ("value"	"0")
-                    ("pspice_param"	"TC2")
-                )
-                ("TC1"
-                    ("value"	"0")
-                    ("pspice_param"	"TC1")
-                )
-                ("POWER"
-                    ("value"	"RMAX")
-                    ("pspice_param"	"POWER")
-                )
-                ("MAX_TEMP"
-                    ("value"	"RTMAX")
-                    ("pspice_param"	"MAX_TEMP")
-                )
-                ("SLOPE"
-                    ("value"	"RSMAX")
-                    ("pspice_param"	"SLOPE")
-                )
-                ("VOLTAGE"
-                    ("value"	"RVMAX")
-                    ("pspice_param"	"VOLTAGE")
-                )
-                ("TOLERANCE"
-                    ("value"	"")
-                    ("pspice_param"	"TOLERANCE")
-                )
-                ("DIST"
-                    ("value"	"FLAT")
-                    ("pspice_param"	"DIST")
-                )
-            )
-        )
-        ("R8"
-            ("device_name"	"POT")
-            ("pspice_path"	"X_R8")
-            ("level"	"0")
-            ("model_params"
-                ("SET"
-                    ("value"	"0.5")
-                    ("pspice_param"	"SET")
-                )
-                ("VALUE"
-                    ("value"	"1K")
-                    ("pspice_param"	"VALUE")
-                )
-                ("BiasValue Power"
-                    ("value"	"4.961W")
-                    ("pspice_param"	"BiasValue Power")
-                )
-            )
-        )
-        ("R9"
-            ("device_name"	"R")
-            ("pspice_path"	"R_R9")
-            ("level"	"0")
-            ("model_params"
-                ("VALUE"
-                    ("value"	"2k")
-                    ("pspice_param"	"VALUE")
-                )
-                ("BiasValue Power"
-                    ("value"	"484.0mW")
+                    ("value"	"12.15mW")
                     ("pspice_param"	"BiasValue Power")
                 )
                 ("TC2"
@@ -237,7 +129,7 @@
             ("level"	"0")
             ("model_params"
                 ("SET"
-                    ("value"	"0.17")
+                    ("value"	"0.95")
                     ("pspice_param"	"SET")
                 )
                 ("VALUE"
@@ -245,7 +137,223 @@
                     ("pspice_param"	"VALUE")
                 )
                 ("BiasValue Power"
-                    ("value"	"110.2mW")
+                    ("value"	"315.2mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+            )
+        )
+        ("D1-60V1"
+            ("device_name"	"Dbreak")
+            ("pspice_path"	"D_D1-60V1")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"153.7mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("AREA"
+                    ("value"	"")
+                    ("pspice_param"	"AREA")
+                )
+            )
+        )
+        ("D2-5.D2-5.1V1"
+            ("device_name"	"Dbreak")
+            ("pspice_path"	"D_D2-5_D2-5_1V1")
+            ("level"	"0")
+            ("model_params"
+                ("AREA"
+                    ("value"	"")
+                    ("pspice_param"	"AREA")
+                )
+            )
+        )
+        ("V4"
+            ("device_name"	"VSIN")
+            ("pspice_path"	"V_V4")
+            ("level"	"0")
+            ("model_params"
+                ("BiasValue Power"
+                    ("value"	"-184.1mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("VAMPL"
+                    ("value"	"10")
+                    ("pspice_param"	"VAMPL")
+                )
+                ("VOFF"
+                    ("value"	"70")
+                    ("pspice_param"	"VOFF")
+                )
+                ("FREQ"
+                    ("value"	"0.5")
+                    ("pspice_param"	"FREQ")
+                )
+                ("PHASE"
+                    ("value"	"0")
+                    ("pspice_param"	"PHASE")
+                )
+                ("DF"
+                    ("value"	"0")
+                    ("pspice_param"	"DF")
+                )
+                ("TD"
+                    ("value"	"0")
+                    ("pspice_param"	"TD")
+                )
+                ("AC"
+                    ("value"	"")
+                    ("pspice_param"	"AC")
+                )
+                ("DC"
+                    ("value"	"")
+                    ("pspice_param"	"DC")
+                )
+            )
+        )
+        ("R14"
+            ("device_name"	"R")
+            ("pspice_path"	"R_R14")
+            ("level"	"0")
+            ("model_params"
+                ("VALUE"
+                    ("value"	"2.2k")
+                    ("pspice_param"	"VALUE")
+                )
+                ("BiasValue Power"
+                    ("value"	"15.22mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+                ("TC2"
+                    ("value"	"0")
+                    ("pspice_param"	"TC2")
+                )
+                ("TC1"
+                    ("value"	"0")
+                    ("pspice_param"	"TC1")
+                )
+                ("POWER"
+                    ("value"	"RMAX")
+                    ("pspice_param"	"POWER")
+                )
+                ("MAX_TEMP"
+                    ("value"	"RTMAX")
+                    ("pspice_param"	"MAX_TEMP")
+                )
+                ("SLOPE"
+                    ("value"	"RSMAX")
+                    ("pspice_param"	"SLOPE")
+                )
+                ("VOLTAGE"
+                    ("value"	"RVMAX")
+                    ("pspice_param"	"VOLTAGE")
+                )
+                ("TOLERANCE"
+                    ("value"	"")
+                    ("pspice_param"	"TOLERANCE")
+                )
+                ("DIST"
+                    ("value"	"FLAT")
+                    ("pspice_param"	"DIST")
+                )
+            )
+        )
+        ("U1"
+            ("device_name"	"Sw_tOpen")
+            ("pspice_path"	"X_U1")
+            ("level"	"0")
+            ("model_params"
+                ("TOPEN"
+                    ("value"	"0")
+                    ("pspice_param"	"tOpen")
+                )
+                ("TTRAN"
+                    ("value"	"1u")
+                    ("pspice_param"	"ttran")
+                )
+                ("RCLOSED"
+                    ("value"	"0.01")
+                    ("pspice_param"	"Rclosed")
+                )
+                ("ROPEN"
+                    ("value"	"1Meg")
+                    ("pspice_param"	"Ropen")
+                )
+                ("BiasValue Power"
+                    ("value"	"57.41uW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+            )
+        )
+        ("U2"
+            ("device_name"	"Sw_tOpen")
+            ("pspice_path"	"X_U2")
+            ("level"	"0")
+            ("model_params"
+                ("TOPEN"
+                    ("value"	"5")
+                    ("pspice_param"	"tOpen")
+                )
+                ("TTRAN"
+                    ("value"	"1u")
+                    ("pspice_param"	"ttran")
+                )
+                ("RCLOSED"
+                    ("value"	"0.01")
+                    ("pspice_param"	"Rclosed")
+                )
+                ("ROPEN"
+                    ("value"	"1Meg")
+                    ("pspice_param"	"Ropen")
+                )
+                ("BiasValue Power"
+                    ("value"	"69.19nW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+            )
+        )
+        ("R15"
+            ("device_name"	"POT")
+            ("pspice_path"	"X_R15")
+            ("level"	"0")
+            ("model_params"
+                ("SET"
+                    ("value"	"1")
+                    ("pspice_param"	"SET")
+                )
+                ("VALUE"
+                    ("value"	"2.2k")
+                    ("pspice_param"	"VALUE")
+                )
+                ("BiasValue Power"
+                    ("value"	"15.22mW")
+                    ("pspice_param"	"BiasValue Power")
+                )
+            )
+        )
+        ("U3"
+            ("device_name"	"Sw_tOpen")
+            ("pspice_path"	"X_U3")
+            ("level"	"0")
+            ("model_params"
+                ("TOPEN"
+                    ("value"	"5")
+                    ("pspice_param"	"tOpen")
+                )
+                ("TTRAN"
+                    ("value"	"1u")
+                    ("pspice_param"	"ttran")
+                )
+                ("RCLOSED"
+                    ("value"	"0.01")
+                    ("pspice_param"	"Rclosed")
+                )
+                ("ROPEN"
+                    ("value"	"1Meg")
+                    ("pspice_param"	"Ropen")
+                )
+                ("BiasValue Power"
+                    ("value"	"30.70e-27W")
                     ("pspice_param"	"BiasValue Power")
                 )
             )

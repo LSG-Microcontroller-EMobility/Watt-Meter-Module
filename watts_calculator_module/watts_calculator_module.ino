@@ -3,9 +3,9 @@
 //						|
 //				Vout(circa 3.4V)
 
-//#define SERIAL_DEBUG
+#define SERIAL_DEBUG
 
-#define SIMULATE_ATTINY_DATA_SEGNAL
+//#define SIMULATE_ATTINY_DATA_SEGNAL
 
 #include <Wire.h>  
 
@@ -43,6 +43,8 @@ char watts_h_to_display[5]{ '\0' };
 
 float volatile value;
 
+float aref_voltage = 4.55f;
+
 void setup() {
 
 	Serial.begin(9600);
@@ -69,7 +71,7 @@ void setup() {
 
 	for (int i = 0; i < 100; i++)
 	{
-		delta = delta + ((3.40f / 1024.00f) * analogRead(A0));
+		delta = delta + ((aref_voltage / 1024.00f) * analogRead(A0));
 	}
 
 	delta = delta / 100.00f;
@@ -190,23 +192,23 @@ void Scroll_Function_Lcd_Message(String message) {
 	
 ISR(TIMER1_COMPA_vect)
 {
-		value = ((3.40f / 1024.00f) * analogRead(A0));
+		value = ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		value += ((3.40f / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		value += ((3.40f / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
 		ampere = ((value / 3) - delta) < 0.055f ? 0.00f : ((value / 3) - delta);
 
-		ampere = (ampere / 0.060f);
+		ampere = (ampere / 0.080f);
 
-		volts = (((3.40f / 1024.00f) * analogRead(A1))); 
+		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((3.40f / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((3.40f / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts = ((volts / 3) * (20.00f / 3.40f)) + 60.00f;
+		volts = ((volts / 3) * (20.00f / aref_voltage)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
 

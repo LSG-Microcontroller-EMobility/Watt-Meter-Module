@@ -1,7 +1,7 @@
 
-**** 11/18/24 18:03:40 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+**** 11/19/24 10:54:39 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
- ** Profile: "SCHEMATIC1-bias"  [ C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
+ ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
 
 
  ****     CIRCUIT DESCRIPTION
@@ -34,17 +34,24 @@
 * source WATTS_METER_INPUT_TEST
 V_V3         N14420 0  
 +SIN 70 10 0.5 0 0 0
-D_D1-60V         N25679 N14420 1N5371B 
-V_V4         N20035 0  
+D_D1-60V         N25679 N31467 1N5371B 
+D_D2-5_D2-5_1V         0 N30086 1N4733A 
+R_R7         N30086 0  2.2k TC=0,0 
+X_R10         N25679 N30086 0 POT PARAMS: SET=0.95 VALUE=1K
+D_D1-60V1         N31175 N31684 1N5371B 
+D_D2-5_D2-5_1V1         0 N31131 1N4733A 
+R_R12         N31131 0  2.2k TC=0,0 
+V_V4         N31051 0  
 +SIN 70 10 0.5 0 0 0
-D_D2-5_D2-5_1V         N26542 N26548 1N4733A 
-R_R7         0 N26542  2.2k TC=0,0 
-X_R8         N20035 N259032 0 POT PARAMS: SET=0.5 VALUE=1K
-R_R9         0 N259032  2k TC=0,0 
-R_R11         0 N26548  2.2k TC=0,0 
+R_R13         N31131 0  1.7k TC=0,0 
+R_R14         N31175 N31131  8,2k TC=0,0 
+-------------------------------$
+ERROR(ORPSIM-16015): Unknown parameter.
+X_U1         N14420 N31467 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+X_U2         N31051 N31684 Sw_tOpen PARAMS: tOpen=10 ttran=1u Rclosed=0.01
++  Ropen=1Meg
 
 **** RESUMING bias.cir ****
 .END
-
-ERROR(ORPSIM-15141): Less than 2 connections at node N25679.
 
