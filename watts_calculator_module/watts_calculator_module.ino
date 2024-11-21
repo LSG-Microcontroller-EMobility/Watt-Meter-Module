@@ -3,7 +3,7 @@
 //						|
 //				Vout(circa 3.4V)
 
-#define SERIAL_DEBUG
+//#define SERIAL_DEBUG
 
 //#define SIMULATE_ATTINY_DATA_SEGNAL
 
