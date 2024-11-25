@@ -43,7 +43,7 @@ char watts_h_to_display[5]{ '\0' };
 
 float volatile value;
 
-float aref_voltage = 4.55f;
+const float volatile aref_voltage = 4.55f;
 
 void setup() {
 

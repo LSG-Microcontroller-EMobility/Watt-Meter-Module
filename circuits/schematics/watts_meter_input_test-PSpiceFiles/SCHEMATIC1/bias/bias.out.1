@@ -1,7 +1,7 @@
 
-**** 11/19/24 10:54:39 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+**** 11/21/24 15:03:15 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
 
- ** Profile: "SCHEMATIC1-bias"  [ c:\repos\lsg-microcontroller-emobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
+ ** Profile: "SCHEMATIC1-bias"  [ C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_inpu
 
 
  ****     CIRCUIT DESCRIPTION
@@ -35,23 +35,37 @@
 V_V3         N14420 0  
 +SIN 70 10 0.5 0 0 0
 D_D1-60V         N25679 N31467 1N5371B 
-D_D2-5_D2-5_1V         0 N30086 1N4733A 
-R_R7         N30086 0  2.2k TC=0,0 
-X_R10         N25679 N30086 0 POT PARAMS: SET=0.95 VALUE=1K
+X_R10         N25679 N30090 0 POT PARAMS: SET=0.95 VALUE=1K
 D_D1-60V1         N31175 N31684 1N5371B 
-D_D2-5_D2-5_1V1         0 N31131 1N4733A 
-R_R12         N31131 0  2.2k TC=0,0 
 V_V4         N31051 0  
 +SIN 70 10 0.5 0 0 0
-R_R13         N31131 0  1.7k TC=0,0 
-R_R14         N31175 N31131  8,2k TC=0,0 
--------------------------------$
-ERROR(ORPSIM-16015): Unknown parameter.
+R_R14         N31175 N313250  2.2k TC=0,0 
 X_U1         N14420 N31467 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
-X_U2         N31051 N31684 Sw_tOpen PARAMS: tOpen=10 ttran=1u Rclosed=0.01
+X_U2         N31051 N31684 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
+X_R15         N313250 N35419 0 POT PARAMS: SET=0.3 VALUE=2.2k
+X_U3         N354050 N35419 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+D_D2         0 N30090 D1N4733 
+D_D3         0 N354050 D1N4733 
+X_U4         N41178 N41310 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+D_D4         N41272 N41310 ZENER_1N4740A 
+R_R16         0 N41272  1k TC=0,0 
+V_V5         N41178 0 15Vdc
 
 **** RESUMING bias.cir ****
 .END
+
+WARNING(ORPSIM-15223): Library file C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib has changed since index file WATTS_METER_INPUT_TEST.ind was created.
+
+WARNING(ORPSIM-15227): The timestamp changed from Thu Nov 21 14:53:19 2024 to Thu Nov 21 15:03:00 2024.
+
+INFO(ORPSIM-15422): Making new index file WATTS_METER_INPUT_TEST.ind for library file WATTS_METER_INPUT_TEST.lib.
+
+Index has 5 entries from 1 file(s).
+
+
+ERROR(ORPSIM-15113): Model ZENER_1N4740A used by D_D4 is undefined
 

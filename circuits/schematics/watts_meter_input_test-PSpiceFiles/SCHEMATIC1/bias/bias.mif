@@ -1,4 +1,5 @@
- lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=1164, size=84
- lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=42, size=103
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=1575, size=84
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=331, size=225
+ lib=C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test-PSpiceFiles\WATTS_METER_INPUT_TEST.lib, offset=249, size=81
  lib=C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice\Library\breakout.lib, offset=9106, size=133
  lib=C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice\Library\anl_misc.lib, offset=21482, size=1021
