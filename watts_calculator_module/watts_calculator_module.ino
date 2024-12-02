@@ -5,7 +5,7 @@
 
 //#define SERIAL_DEBUG
 
-//#define SIMULATE_ATTINY_DATA_SEGNAL
+//#define SIMULATE_ATTINY_DATA_SEGNAL           Don't activate if connected with others..... only alone.
 
 #include <Wire.h>  
 
@@ -51,9 +51,9 @@ void setup() {
 
 	sf.begin(600);
 
-	pinMode(3, INPUT_PULLUP);
+	//pinMode(3, INPUT_PULLUP);
 
-#ifdef DEBUG
+#ifdef SERIAL_DEBUG
 	Serial.println(F("start"));
 #endif // DEBUG
 
@@ -64,6 +64,9 @@ void setup() {
 	analogReference(EXTERNAL);
 
 	//Scroll_Function_Lcd_Message("check system");
+
+	//remove this if use scroll, used to delay read from current sensor.
+	delay(2000);
 
 	Lcd_Print_Message("w: ", 0, 0, false); Lcd_Print_Message("|", 0, 8, false,0); Lcd_Print_Message("v: ", 0, 9, false);
 
@@ -76,8 +79,10 @@ void setup() {
 
 	delta = delta / 100.00f;
 
+	//pinMode(7, INPUT_PULLUP);
+
 #ifdef SIMULATE_ATTINY_DATA_SEGNAL
-	pinMode(7, OUTPUT);
+	pinMode(7, INPUT);
 #endif // SIMULATION
 
 	attachInterrupt(1, Activate_System_Interrupt, FALLING);
@@ -90,8 +95,6 @@ void setup() {
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12 = 1, prescaler 64
 
 	OCR1A = 250;                     // Imposta il valore di confronto per 1 ms
-
-	
 }
 
 void loop() {
@@ -143,8 +146,10 @@ void Send_Data()
 {
 	sf.print('*');
 	sf.print(amps_to_transmit);
+	//sf.print(10.12f);
 	sf.print('\0');
 	sf.print(total_watts_to_transmit);
+	//sf.print(1500.13f);
 	delay(200);
 }
 
@@ -162,7 +167,7 @@ void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear,uin
 
 	lcd.print(message);
 
-	delay(100);
+	//delay(100);
 }
 
 void Scroll_Function_Lcd_Message(String message) {
@@ -228,7 +233,7 @@ void Activate_System_Interrupt()
 	/*amps_to_transmit = 50.00f;
 	total_watts_to_transmit = 1500;*/
 
-#ifdef _DEBUG
+#ifdef SERIAL_DEBUG
 	Serial.println(F("interrupt"));
 	Serial.print(F("send watts: ")); Serial.println(total_watts_to_transmit);
 	Serial.print(F("send amps: ")); Serial.println(amps_to_transmit);
