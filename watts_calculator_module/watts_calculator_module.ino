@@ -3,7 +3,7 @@
 //						|
 //				Vout(circa 3.4V)
 
-//#define SERIAL_DEBUG
+#define SERIAL_DEBUG
 
 //#define SIMULATE_ATTINY_DATA_SEGNAL           Don't activate if connected with others..... only alone.
 
@@ -23,7 +23,7 @@ float volatile ampere = 0.00f;
 
 float volatile volts = 0.00f;
 
-double volatile total_watts_H = 0.00f;
+float volatile total_watts_H = 0.00f;
 
 float volatile total_watts_to_transmit = 0.00f;
 
@@ -199,21 +199,21 @@ ISR(TIMER1_COMPA_vect)
 {
 		value = ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));
+		/*value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));*/
 
-		ampere = ((value / 3) - delta) < 0.055f ? 0.00f : ((value / 3) - delta);
+		ampere = ((value /*/ 3*/) - delta) < 0.055f ? 0.00f : ((value /*/ 3*/) - delta);
 
 		ampere = (ampere / 0.080f);
 
 		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		/*volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));*/
 
-		volts = ((volts / 3) * (20.00f / aref_voltage)) + 60.00f;
+		volts = ((volts /*/ 3*/) * (20.00f / aref_voltage)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
 
