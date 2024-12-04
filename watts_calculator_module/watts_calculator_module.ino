@@ -3,7 +3,7 @@
 //						|
 //				Vout(circa 3.4V)
 
-#define SERIAL_DEBUG
+//#define SERIAL_DEBUG
 
 #include <Wire.h>  
 
@@ -27,7 +27,7 @@ float volatile total_watts_to_transmit = 0.00f;
 
 float volatile amps_to_transmit = 0.00f;
 
-void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
+void lcd_print_message(char message[8], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0);
 
 volatile float delta = 0.00f;
 
@@ -64,9 +64,9 @@ void setup() {
 	//remove this if use scroll, used to delay read from current sensor.
 	delay(2000);
 
-	Lcd_Print_Message("w: ", 0, 0, false); Lcd_Print_Message("|", 0, 8, false,0); Lcd_Print_Message("v: ", 0, 9, false);
+	lcd_print_message("w: ", 0, 0, false); lcd_print_message("|", 0, 8, false,0); lcd_print_message("v: ", 0, 9, false);
 
-	Lcd_Print_Message("a: ", 1, 0, false); Lcd_Print_Message("|", 1, 8, false); Lcd_Print_Message("wh: ", 1, 9, false);
+	lcd_print_message("a: ", 1, 0, false); lcd_print_message("|", 1, 8, false); lcd_print_message("wh: ", 1, 9, false);
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -86,7 +86,7 @@ void setup() {
 
 	OCR1A = 250;                     // Imposta il valore di confronto per 1 ms
 
-	attachInterrupt(0, Activate_System_Interrupt, FALLING);
+	attachInterrupt(0, activate_system_interrupt, FALLING);
 
 }
 
@@ -97,7 +97,7 @@ void loop() {
 
 	lcd_print_message();
 	
-	Send_Data();
+	send_data();
 }
 
 void print_to_console()
@@ -125,17 +125,17 @@ void lcd_print_message()
 
 	itoa(total_watts_H, watts_h_to_display, 10);
 
-	Lcd_Print_Message(watts_to_display, 0, 2, true, 4);
+	lcd_print_message(watts_to_display, 0, 2, true, 4);
 
-	Lcd_Print_Message(voltage_to_display, 0, 11, true, 4);
+	lcd_print_message(voltage_to_display, 0, 11, true, 4);
 
-	Lcd_Print_Message(amps_to_display, 1, 2, true, 5);
+	lcd_print_message(amps_to_display, 1, 2, true, 5);
 
-	Lcd_Print_Message(watts_h_to_display, 1, 12, true, 4);
+	lcd_print_message(watts_h_to_display, 1, 12, true, 4);
 
 }
 
-void Send_Data()
+void send_data()
 {
 	sf.print('*');
 	sf.print(amps_to_transmit);
@@ -146,7 +146,7 @@ void Send_Data()
 	delay(200);
 }
 
-void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
+void lcd_print_message(char message[8], uint8_t row, uint8_t col, bool clear,uint8_t clear_lenght = 0)
 {
 	if (clear)
 	{
@@ -163,7 +163,7 @@ void Lcd_Print_Message(char message[8], uint8_t row, uint8_t col, bool clear,uin
 	//delay(100);
 }
 
-void Scroll_Function_Lcd_Message(String message) {
+void scroll_function_lcd_message(String message) {
 
 	lcd.clear();
 
@@ -187,32 +187,45 @@ void Scroll_Function_Lcd_Message(String message) {
 
 	lcd.clear();
 }
+
+unsigned long volatile count = 0;
 	
 ISR(TIMER1_COMPA_vect)
 {
+	
 		value = ((aref_voltage / 1024.00f) * analogRead(A0));
-
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
 		//value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		ampere = ((value / 2) - delta) < 0.055f ? 0.00f : ((value / 2) - delta);
+		//value += ((aref_voltage / 1024.00f) * analogRead(A0));
+
+		ampere = ((value /*/ 2*/) - delta) < 0.055f ? 0.00f : ((value /*/ 2*/) - delta);
 
 		ampere = (ampere / 0.080f);
 
 		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		//volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
 		//volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts = ((volts / 2) * (20.00f / aref_voltage)) + 60.00f;
+		volts = ((volts /*/ 2*/) * (20.00f / aref_voltage)) + 60.00f;
 		
-		total_watts_H += ((ampere) / 3600000) * volts;
+		total_watts_H += ((ampere) / 3600000.00f) * volts;
+
+		/*if (count == 999)
+		{
+			count = 0;
+			Serial.println(millis());
+		}
+		else
+		{
+			count++;
+		}*/
 
 }
 
-void Activate_System_Interrupt()
+void activate_system_interrupt()
 {
 
 	TIMSK1 &= ~(1 << OCIE1A);  // Clear del bit OCIE1A per disabilitare l'interrupt del Timer1
