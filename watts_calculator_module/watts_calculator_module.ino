@@ -5,8 +5,6 @@
 
 #define SERIAL_DEBUG
 
-//#define SIMULATE_ATTINY_DATA_SEGNAL           Don't activate if connected with others..... only alone.
-
 #include <Wire.h>  
 
 #include <LiquidCrystal_I2C.h>
@@ -51,8 +49,6 @@ void setup() {
 
 	sf.begin(600);
 
-	//pinMode(3, INPUT_PULLUP);
-
 #ifdef SERIAL_DEBUG
 	Serial.println(F("start"));
 #endif // DEBUG
@@ -79,15 +75,9 @@ void setup() {
 
 	delta = delta / 100.00f;
 
-	//pinMode(7, INPUT_PULLUP);
+	
 
-#ifdef SIMULATE_ATTINY_DATA_SEGNAL
-	pinMode(7, INPUT);
-#endif // SIMULATION
-
-	attachInterrupt(1, Activate_System_Interrupt, FALLING);
-
-	// Imposta Timer1 in modalità CTC
+	//// Imposta Timer1 in modalità CTC
 	TIMSK1 = (1 << OCIE1A);          // Abilita l'interrupt di confronto A
 
 	TCCR1A = 0b00000001; // fast pwm                     // Modalità CTC su Timer1 (WGM12 = 1 in TCCR1B)
@@ -95,6 +85,9 @@ void setup() {
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12 = 1, prescaler 64
 
 	OCR1A = 250;                     // Imposta il valore di confronto per 1 ms
+
+	attachInterrupt(0, Activate_System_Interrupt, FALLING);
+
 }
 
 void loop() {
@@ -109,12 +102,12 @@ void loop() {
 
 void print_to_console()
 {
-	Serial.println(F("-------------------------------------"));
+	Serial.println(F("---"));
 	Serial.print(F("volts : ")); Serial.println(volts);
 	Serial.print(F("ampere : ")); Serial.println((ampere));
 	Serial.print(F("total_watts_H : ")); Serial.println(total_watts_H);
 	Serial.print(F("watts : ")); Serial.println(((ampere) * volts));
-	Serial.println(F("-------------------------------------"));
+	Serial.println(F("---"));
 }
 
 void lcd_print_message()
@@ -199,46 +192,47 @@ ISR(TIMER1_COMPA_vect)
 {
 		value = ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		/*value += ((aref_voltage / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));*/
+		//value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		ampere = ((value /*/ 3*/) - delta) < 0.055f ? 0.00f : ((value /*/ 3*/) - delta);
+		ampere = ((value / 2) - delta) < 0.055f ? 0.00f : ((value / 2) - delta);
 
 		ampere = (ampere / 0.080f);
 
 		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		/*volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));*/
+		//volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts = ((volts /*/ 3*/) * (20.00f / aref_voltage)) + 60.00f;
+		volts = ((volts / 2) * (20.00f / aref_voltage)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000) * volts;
-
-#ifdef SIMULATE_ATTINY_DATA_SEGNAL
-		digitalWrite(7, HIGH);
-
-		digitalWrite(7, LOW);
-#endif // SIMULATION
 
 }
 
 void Activate_System_Interrupt()
 {
+
+	TIMSK1 &= ~(1 << OCIE1A);  // Clear del bit OCIE1A per disabilitare l'interrupt del Timer1
+
+	//Serial.println("inter...");
+
 	amps_to_transmit = ampere;
 	total_watts_to_transmit = total_watts_H;
 
 	/*amps_to_transmit = 50.00f;
 	total_watts_to_transmit = 1500;*/
 
+	
 #ifdef SERIAL_DEBUG
-	Serial.println(F("interrupt"));
+	Serial.println(F("----------    interrupt --------------"));
 	Serial.print(F("send watts: ")); Serial.println(total_watts_to_transmit);
 	Serial.print(F("send amps: ")); Serial.println(amps_to_transmit);
 #endif // _DEBUG
 
+	TIMSK1 |= (1 << OCIE1A);  // Set del bit OCIE1A per riabilitare l'interrupt del Timer1
 }
 
 
