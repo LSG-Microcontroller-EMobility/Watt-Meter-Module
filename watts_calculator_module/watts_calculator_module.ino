@@ -195,28 +195,28 @@ ISR(TIMER1_COMPA_vect)
 	
 		value = ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		//value += ((aref_voltage / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		//value += ((aref_voltage / 1024.00f) * analogRead(A0));
+		value += ((aref_voltage / 1024.00f) * analogRead(A0));
 
-		ampere = ((value /*/ 2*/) - delta) < 0.055f ? 0.00f : ((value /*/ 2*/) - delta);
+		ampere = ((value / 3) - delta) < 0.055f ? 0.00f : ((value / 3) - delta);
 
 		ampere = (ampere / 0.080f);
 
 		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		//volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		//volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts = ((volts /*/ 2*/) * (20.00f / aref_voltage)) + 60.00f;
+		volts = ((volts / 3) * (20.00f / aref_voltage)) + 60.00f;
 		
 		total_watts_H += ((ampere) / 3600000.00f) * volts;
 
-		/*if (count == 999)
+		/*if (count == (3600000 / 4))
 		{
 			count = 0;
-			Serial.println(millis());
+			Serial.print(F("Min :")); Serial.println(((millis() / 1000) / 60));
 		}
 		else
 		{
