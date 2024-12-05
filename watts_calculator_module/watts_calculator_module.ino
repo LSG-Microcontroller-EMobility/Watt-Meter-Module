@@ -39,8 +39,6 @@ char amps_to_display[7]{ '\0' };
 
 char watts_h_to_display[5]{ '\0' };
 
-float volatile value;
-
 const float volatile aref_voltage = 4.55f;
 
 void setup() {
@@ -75,16 +73,16 @@ void setup() {
 
 	delta = delta / 100.00f;
 
-	
-
 	//// Imposta Timer1 in modalità CTC
 	TIMSK1 = (1 << OCIE1A);          // Abilita l'interrupt di confronto A
 
-	TCCR1A = 0b00000001; // fast pwm                     // Modalità CTC su Timer1 (WGM12 = 1 in TCCR1B)
+	//TCCR1A = 0b00000001; // fast pwm     
+	// 
+	 TCCR1A = 0;              // Modalità CTC su Timer1 (WGM12 = 1 in TCCR1B)
 
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12 = 1, prescaler 64
 
-	OCR1A = 250;                     // Imposta il valore di confronto per 1 ms
+	OCR1A = 175;                     // Imposta il valore di confronto per 1 ms
 
 	attachInterrupt(0, activate_system_interrupt, FALLING);
 
@@ -192,31 +190,20 @@ unsigned long volatile count = 0;
 	
 ISR(TIMER1_COMPA_vect)
 {
-	
-		value = ((aref_voltage / 1024.00f) * analogRead(A0));
-
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));
-
-		value += ((aref_voltage / 1024.00f) * analogRead(A0));
-
-		ampere = ((value / 3) - delta) < 0.055f ? 0.00f : ((value / 3) - delta);
-
-		ampere = (ampere / 0.080f);
+		ampere = ((aref_voltage / 1024.00f) * analogRead(A0));
 
 		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
+		ampere = (ampere - delta) < 0.055f ? 0.00f : ((ampere - delta) / 0.080f);
 
-		volts += (((aref_voltage / 1024.00f) * analogRead(A1)));
-
-		volts = ((volts / 3) * (20.00f / aref_voltage)) + 60.00f;
+		volts = ((volts) * (20.00f / aref_voltage)) + 60.00f;
 		
-		total_watts_H += ((ampere) / 3600000.00f) * volts;
+		total_watts_H += (ampere / 3600000) * volts;
 
-		/*if (count == (3600000 / 4))
+		/*if (count == 10000)                         
 		{
 			count = 0;
-			Serial.print(F("Min :")); Serial.println(((millis() / 1000) / 60));
+			Serial.print(F("-------------    total_watts_H : ")); Serial.println(total_watts_H);
 		}
 		else
 		{
