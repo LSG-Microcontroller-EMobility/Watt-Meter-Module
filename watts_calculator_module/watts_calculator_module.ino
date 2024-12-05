@@ -41,6 +41,10 @@ char watts_h_to_display[5]{ '\0' };
 
 const float volatile aref_voltage = 4.55f;
 
+const float aref_step = aref_voltage / 1024.00f;
+
+const float ext_voltage_step = 20.00f / aref_voltage;
+
 void setup() {
 
 	Serial.begin(9600);
@@ -82,7 +86,7 @@ void setup() {
 
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12 = 1, prescaler 64
 
-	OCR1A = 175;                     // Imposta il valore di confronto per 1 ms
+	OCR1A = 163;//ATTENZIONE:: dovrebbe essere 250 ma troppo lento            // Imposta il valore di confronto per 1 ms
 
 	attachInterrupt(0, activate_system_interrupt, FALLING);
 
@@ -190,20 +194,20 @@ unsigned long volatile count = 0;
 	
 ISR(TIMER1_COMPA_vect)
 {
-		ampere = ((aref_voltage / 1024.00f) * analogRead(A0));
+		ampere = (aref_step * analogRead(A0));
 
-		volts = (((aref_voltage / 1024.00f) * analogRead(A1)));
+		volts = (aref_step * analogRead(A1));
 
 		ampere = (ampere - delta) < 0.055f ? 0.00f : ((ampere - delta) / 0.080f);
 
-		volts = ((volts) * (20.00f / aref_voltage)) + 60.00f;
+		volts = (volts * ext_voltage_step) + 60.00f;
 		
 		total_watts_H += (ampere / 3600000) * volts;
 
 		/*if (count == 10000)                         
 		{
 			count = 0;
-			Serial.print(F("-------------    total_watts_H : ")); Serial.println(total_watts_H);
+			Serial.println(total_watts_H);
 		}
 		else
 		{
