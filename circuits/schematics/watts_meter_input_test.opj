@@ -63,6 +63,11 @@
         (Type "PSpice Profile"))))
   (DefaultLibraryBrowseDirectory "library\PSpice")
   (PartMRUSelector
+    (Dbreak
+      (FullPartName "Dbreak.Normal")
+      (LibraryName
+         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
+      (DeviceIndex "0"))
     (C
       (FullPartName "C.Normal")
       (LibraryName
@@ -77,11 +82,6 @@
       (FullPartName "R.Normal")
       (LibraryName
          "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
-      (DeviceIndex "0"))
-    (Dbreak
-      (FullPartName "Dbreak.Normal")
-      (LibraryName
-         "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\PSPICE\BREAKOUT.OLB")
       (DeviceIndex "0"))
     (PORTLEFT-L
       (LibraryName "C:\ORCAD\ORCAD_16.6_LITE\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
@@ -145,22 +145,17 @@
   (GlobalState
     (FileView
       (Path "Design Resources")
-      (Path "Design Resources"
-         "C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test.DSN")
-      (Path "Design Resources"
-         "C:\Repos\LSG-Microcontroller-EMobility\watts_calculator_module\circuits\schematics\watts_meter_input_test.DSN"
-         "SCHEMATIC1")
       (Path "Design Resources" "Library")
       (Path "Outputs")
       (Path "PSpice Resources")
       (Path "PSpice Resources" "Model Libraries")
       (Path "PSpice Resources" "Simulation Profiles")
-      (Select "PSpice Resources" "Model Libraries"))
+      (Select "Design Resources"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -8 -31 0 200 0 545"))
+        (Placement "44 2 3 -1 -1 -8 -31 0 200 0 545"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
@@ -176,7 +171,7 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 2 3 -1 -1 -8 -31 52 1184 52 666")
+        (Placement "44 0 1 -1 -1 -8 -31 52 1184 52 666")
         (Scroll "249 234")
         (Zoom "236")
         (Occurrence "/"))
@@ -188,10 +183,21 @@
       (Type "COrSchematicDoc")
       (Frame
         (Placement "44 0 1 -1 -1 -8 -31 78 1210 78 692")
-        (Scroll "440 282")
+        (Scroll "319 282")
         (Zoom "236")
         (Occurrence "/"))
       (Path
          "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
       (Schematic "SCHEMATIC1")
-      (Page "zener_test_regulation"))))
+      (Page "zener_test_regulation"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 208 1795 208 822")
+        (Scroll "191 255")
+        (Zoom "236")
+        (Occurrence "/"))
+      (Path
+         "C:\REPOS\LSG-MICROCONTROLLER-EMOBILITY\WATTS_CALCULATOR_MODULE\CIRCUITS\SCHEMATICS\WATTS_METER_INPUT_TEST.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "zener test for 10v cutter"))))

@@ -9,17 +9,28 @@ V_V4         N31051 0
 R_R14         N31175 N41892  2.2k TC=0,0 
 X_U1         N14420 N31467 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
-X_U2         N31051 N31684 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
+X_U2         N31051 N31684 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
 X_R15         N41892 N35419 0 POT PARAMS: SET=1 VALUE=2.2k
-X_U3         N354050 N35419 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
+X_U3         N354050 N35419 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
 D_D2         0 N30090 D1N4733 
 D_D3-5V1         0 N354050 D1N4733 
-X_U4         N41178 N41310 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
+X_U4         N41178 N41310 Sw_tOpen PARAMS: tOpen=0 ttran=1u Rclosed=0.01
 +  Ropen=1Meg
 D_D4         N41272 N41310 1N4740A 
-R_R16         0 N41272  1k TC=0,0 
+R_R16         0 N41272  470 TC=0,0 
 V_V5         N41178 0  
 +SIN 12 2 0.5 0 0 0
 C_C1         0 N41892  0.1uF  TC=0,0 
+V_V6         N42843 0  
++SIN 12 2 0.5 0 0 0
+R_R17         N43303 N42899  470 TC=0,0 
+X_U5         N42843 N42873 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+C_C2         0 N43303  0.1uF  TC=0,0 
+X_R18         N43303 N43541 0 POT PARAMS: SET=1 VALUE=100k
+D_D3-5V2         0 N434261 D1N4733 
+X_U6         N434261 N43541 Sw_tOpen PARAMS: tOpen=5 ttran=1u Rclosed=0.01
++  Ropen=1Meg
+D_D5         N42899 N42873 1N4740A 
