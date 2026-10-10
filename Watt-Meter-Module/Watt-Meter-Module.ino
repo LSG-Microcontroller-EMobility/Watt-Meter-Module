@@ -54,7 +54,7 @@ void setup() {
 	delay(2000);
 	lcd_print_message("w: ", 0, 0, false); lcd_print_message("|", 0, 8, false, 0); lcd_print_message("v: ", 0, 9, false);
 	lcd_print_message("a: ", 1, 0, false); lcd_print_message("|", 1, 8, false); lcd_print_message("wh: ", 1, 9, false);
-	for (int i = 0; i < 100; i++){
+	for (int i = 0; i < 100; i++) {
 		delta = delta + ((aref_voltage / 1024.00f) * analogRead(A0));
 	}
 	delta = delta / 100.00f;
@@ -65,6 +65,7 @@ void setup() {
 	TCCR1A = 0;              // Modalità CTC su Timer1 (WGM12 = 1 in TCCR1B)
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12 = 1, prescaler 64
 	OCR1A = 163;//ATTENZIONE:: dovrebbe essere 250 ma troppo lento            // Imposta il valore di confronto per 1 ms
+	pinMode(2, INPUT_PULLUP);
 	attachInterrupt(0, activate_system_interrupt, FALLING);
 }
 void loop() {
@@ -76,24 +77,24 @@ void loop() {
 	send_data();
 }
 #if DEBUG_SERIAL
-void print_to_console()
-{
+void print_to_console() {
+	static unsigned long lastPrint = 0;
+	if (millis() - lastPrint < 1000) return;
+	lastPrint = millis();
 	noInterrupts();
 	const float debug_volts = volts;
 	const float debug_ampere = ampere;
 	const float debug_total_watts_h = total_watts_H;
 	interrupts();
-
 	DEBUG_SERIAL_PRINTLN(F("---"));
 	DEBUG_SERIAL_PRINT(F("volts : ")); DEBUG_SERIAL_PRINTLN(debug_volts);
 	DEBUG_SERIAL_PRINT(F("ampere : ")); DEBUG_SERIAL_PRINTLN(debug_ampere);
 	DEBUG_SERIAL_PRINT(F("total_watts_H : ")); DEBUG_SERIAL_PRINTLN(debug_total_watts_h);
 	DEBUG_SERIAL_PRINT(F("watts : ")); DEBUG_SERIAL_PRINTLN(debug_ampere * debug_volts);
 	DEBUG_SERIAL_PRINTLN(F("---"));
+	
 }
-
-void print_transmission_debug_if_pending()
-{
+void print_transmission_debug_if_pending() {
 	noInterrupts();
 	const bool should_print = transmission_debug_pending;
 	transmission_debug_pending = false;
@@ -108,7 +109,7 @@ void print_transmission_debug_if_pending()
 	DEBUG_SERIAL_PRINT(F("send amps: ")); DEBUG_SERIAL_PRINTLN(amps);
 }
 #endif
-void lcd_print_message(){
+void lcd_print_message() {
 	dtostrf((ampere * volts), 6, 1, watts_to_display);
 	//itoa((ampere * volts), watts, 10);
 	//itoa(volts, voltage, 10);
@@ -121,7 +122,7 @@ void lcd_print_message(){
 	lcd_print_message(amps_to_display, 1, 2, true, 5);
 	lcd_print_message(watts_h_to_display, 1, 12, true, 4);
 }
-void send_data(){
+void send_data() {
 	sf.print('*');
 	sf.print(amps_to_transmit);
 	//sf.print(10.12f);
@@ -130,12 +131,9 @@ void send_data(){
 	//sf.print(1500.13f);
 	delay(200);
 }
-void lcd_print_message(char message[8], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0)
-{
-	if (clear)
-	{
-		for (int i = 0; i < clear_lenght; i++)
-		{
+void lcd_print_message(char message[8], uint8_t row, uint8_t col, bool clear, uint8_t clear_lenght = 0) {
+	if (clear) {
+		for (int i = 0; i < clear_lenght; i++) {
 			lcd.setCursor(col + i, row); lcd.print(" ");
 		}
 	}
@@ -170,14 +168,14 @@ void scroll_function_lcd_message(String message) {
 
 	lcd.clear();
 }
-ISR(TIMER1_COMPA_vect){
+ISR(TIMER1_COMPA_vect) {
 	ampere = (aref_step * analogRead(A0));
 	volts = (aref_step * analogRead(A1));
 	ampere = (ampere - delta) < 0.055f ? 0.00f : ((ampere - delta) / 0.080f);
 	volts = (volts * ext_voltage_step) + 60.00f;
 	total_watts_H += (ampere / 3600000) * volts;
 }
-void activate_system_interrupt(){
+void activate_system_interrupt() {
 	TIMSK1 &= ~(1 << OCIE1A);  // Clear del bit OCIE1A per disabilitare l'interrupt del Timer1
 	amps_to_transmit = ampere;
 	total_watts_to_transmit = total_watts_H;
