@@ -2,7 +2,7 @@
 //				Vout(circa 3.4V)
 // Debug del monitor seriale: 0 = produzione, 1 = debug a 9600 baud.
 #ifndef DEBUG_SERIAL
-#define DEBUG_SERIAL 0
+#define DEBUG_SERIAL 1
 #endif
 
 #if DEBUG_SERIAL
