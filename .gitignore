@@ -36,3 +36,7 @@
 .vs/
 Watt-Meter-Module/obj/
 Watt-Meter-Module/__vm/
+GitVersion.generated.h
+GitVersion.generated.tmp
+!GitVersion.h
+__vm/
